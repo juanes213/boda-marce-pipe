@@ -601,11 +601,17 @@ const DressCodeSection = () => (
 );
 
 const GallerySection = () => {
+  const [activeImage, setActiveImage] = useState<number | null>(null);
   const images = [
     { src: '/DSC09127.jpg', alt: 'Marce & Pipe' },
     { src: '/DSC08445.jpg', alt: 'Flores' },
     { src: '/DSC09599.jpg', alt: 'Atardecer' },
   ];
+
+  const handleImageClick = (index: number) => {
+    // Toggle active state on mobile tap
+    setActiveImage(activeImage === index ? null : index);
+  };
 
   return (
     <Section id="galeria" className="py-24 bg-[#f4f3ef]">
@@ -618,7 +624,7 @@ const GallerySection = () => {
           transition={{ duration: 0.6 }}
         >
           <p className="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-sm mb-4">Momentos especiales</p>
-          <h2 
+          <h2
             className="text-4xl md:text-5xl text-[#1d1d1d]"
             style={{ fontFamily: "'Reina Neue Display', serif" }}
           >
@@ -635,11 +641,14 @@ const GallerySection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
+              onClick={() => handleImageClick(index)}
             >
-              <img 
-                src={image.src} 
+              <img
+                src={image.src}
                 alt={image.alt}
-                className="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105"
+                className={`w-full h-full object-cover transition-all duration-700
+                  ${activeImage === index ? 'grayscale-0 scale-105' : 'grayscale md:grayscale'}
+                  md:group-hover:grayscale-0 md:group-hover:scale-105`}
               />
             </motion.div>
           ))}

@@ -115,6 +115,21 @@ export const InvitationContent = ({ guestId }: InvitationContentProps) => {
       {/* Background */}
       <BackgroundGradient />
 
+      {/* Logo link to home - fixed top-left */}
+      <motion.a
+        href="/"
+        className="fixed top-4 left-4 md:top-6 md:left-6 z-50 hover:opacity-80 transition-opacity duration-300"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+      >
+        <img
+          src="/Recurso 6@1000x.png"
+          alt="Volver al inicio"
+          className="h-8 md:h-10 w-auto"
+        />
+      </motion.a>
+
       {/* Decorative corner ornaments */}
       <CornerOrnament position="top-left" />
       <CornerOrnament position="top-right" />
