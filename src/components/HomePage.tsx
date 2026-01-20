@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
+import { RSVPSection } from './RSVPSection';
 
 // Navbar with scroll-aware background
 const Navbar = () => {
@@ -33,10 +34,12 @@ const Navbar = () => {
           }}
         />
         <div className="hidden md:flex gap-8 text-sm tracking-widest uppercase">
-          {['Nuestra Historia', 'La Boda', 'Galería'].map((item) => (
-            <a 
+          {['Nuestra Historia', 'La Boda', 'Vestimenta', 'Galería'].map((item) => {
+            const href = item === 'Vestimenta' ? '#codigo-vestimenta' : `#${item.toLowerCase().replace(' ', '-')}`;
+            return (
+            <a
               key={item}
-              href={`#${item.toLowerCase().replace(' ', '-')}`} 
+              href={href} 
               className={`relative py-1 transition-colors duration-500 group ${
                 scrolled 
                   ? 'text-[#1d1d1d]/70 hover:text-[#1d1d1d]' 
@@ -51,7 +54,8 @@ const Navbar = () => {
                 scrolled ? 'bg-[#1d1d1d]' : 'bg-white'
               }`} />
             </a>
-          ))}
+            );
+          })}
         </div>
       </div>
     </motion.nav>
@@ -452,6 +456,150 @@ const WeddingDetailsSection = () => (
   </Section>
 );
 
+const DressCodeSection = () => (
+  <Section id="codigo-vestimenta" className="py-24 bg-white">
+    <div className="max-w-6xl mx-auto px-6">
+      <motion.div
+        className="text-center mb-16"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <p className="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-sm mb-4">Viste para la ocasión</p>
+        <h2
+          className="text-4xl md:text-5xl text-[#1d1d1d] mb-4"
+          style={{ fontFamily: "'Reina Neue Display', serif" }}
+        >
+          Código de Vestimenta
+        </h2>
+        <p className="text-[#1d1d1d]/70 text-xl" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+          Formal Elegante
+        </p>
+      </motion.div>
+
+      <div className="grid md:grid-cols-2 gap-12">
+        {/* Hombres */}
+        <motion.div
+          className="space-y-6"
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#1d1d1d]/5 mb-4">
+              <svg className="w-8 h-8 text-[#1d1d1d]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <h3 className="text-2xl text-[#1d1d1d]" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+              Hombres
+            </h3>
+          </div>
+
+          <div className="bg-[#f4f3ef] rounded-lg p-6">
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <span className="text-[#b8894e] mt-1">✓</span>
+                <span className="text-[#1d1d1d]/80">Traje completo (saco + pantalón)</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-[#b8894e] mt-1">✓</span>
+                <span className="text-[#1d1d1d]/80">Camisa de vestir</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-[#b8894e] mt-1">✓</span>
+                <span className="text-[#1d1d1d]/80">Corbata o corbatín</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-[#b8894e] mt-1">✓</span>
+                <span className="text-[#1d1d1d]/80">Zapatos de vestir</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Imagen de ejemplo - placeholder */}
+          <motion.div
+            className="aspect-[3/4] bg-gradient-to-br from-[#1d1d1d]/5 to-[#1d1d1d]/10 rounded-lg overflow-hidden"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="w-full h-full flex items-center justify-center">
+              <p className="text-[#1d1d1d]/30 text-sm">Imagen de referencia</p>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Mujeres */}
+        <motion.div
+          className="space-y-6"
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#1d1d1d]/5 mb-4">
+              <svg className="w-8 h-8 text-[#1d1d1d]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <h3 className="text-2xl text-[#1d1d1d]" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+              Mujeres
+            </h3>
+          </div>
+
+          <div className="bg-[#f4f3ef] rounded-lg p-6">
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <span className="text-[#b8894e] mt-1">✓</span>
+                <span className="text-[#1d1d1d]/80">Vestido largo o midi elegante</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-[#b8894e] mt-1">✓</span>
+                <span className="text-[#1d1d1d]/80">Conjunto de gala</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-[#b8894e] mt-1">✓</span>
+                <span className="text-[#1d1d1d]/80">Accesorios elegantes</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-[#b8894e] mt-1">✓</span>
+                <span className="text-[#1d1d1d]/80">Tacones o zapatos formales</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Imagen de ejemplo - placeholder */}
+          <motion.div
+            className="aspect-[3/4] bg-gradient-to-br from-[#1d1d1d]/5 to-[#1d1d1d]/10 rounded-lg overflow-hidden"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="w-full h-full flex items-center justify-center">
+              <p className="text-[#1d1d1d]/30 text-sm">Imagen de referencia</p>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Nota adicional */}
+      <motion.div
+        className="mt-12 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+      >
+        <p className="text-[#1d1d1d]/60 text-sm">
+          Por favor evitar jeans, tenis y ropa casual
+        </p>
+      </motion.div>
+    </div>
+  </Section>
+);
+
 const GallerySection = () => {
   const images = [
     { src: '/DSC09127.jpg', alt: 'Marce & Pipe' },
@@ -572,7 +720,9 @@ export const HomePage = () => {
       <CountdownSection />
       <OurStorySection />
       <WeddingDetailsSection />
+      <DressCodeSection />
       <GallerySection />
+      <RSVPSection />
       <FooterSection />
     </div>
   );

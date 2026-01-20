@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 
 interface EnvelopeProps {
   isOpen: boolean;
+  guestName?: string;
+  guestCount?: number;
 }
 
 // Curva de easing suave y natural (similar a ease-out-expo)
@@ -11,7 +13,7 @@ const heavyEase = [0.34, 1.56, 0.64, 1]; // Con ligero rebote
 // Curva para el flap del sobre (más dramático)
 const flapEase = [0.65, 0, 0.35, 1];
 
-export const Envelope = ({ isOpen }: EnvelopeProps) => {
+export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 3 }: EnvelopeProps) => {
   return (
     <div className="relative w-full max-w-[360px] md:max-w-[420px] mx-auto">
       {/* Envelope wrapper with fixed aspect ratio */}
@@ -56,9 +58,9 @@ export const Envelope = ({ isOpen }: EnvelopeProps) => {
           >
             <div className="relative w-full h-full max-w-[90%] mx-auto">
 
-              {/* Photo 1 - Left (Roses) */}
+              {/* Card 1 - Left (Invitados) */}
               <motion.div
-                className="absolute left-[0%] bottom-[8%] w-[38%] bg-white shadow-xl p-1.5 origin-bottom-left"
+                className="absolute left-[0%] bottom-[8%] w-[38%] bg-white shadow-xl p-3 md:p-4 origin-bottom-left"
                 style={{ zIndex: 10 }}
                 initial={{ rotate: -8, scale: 0.95 }}
                 animate={{
@@ -72,13 +74,25 @@ export const Envelope = ({ isOpen }: EnvelopeProps) => {
                   ease: smoothEase
                 }}
               >
-                <div className="aspect-[4/5] overflow-hidden">
-                  <img src="/DSC08445.jpg" alt="Flores" className="w-full h-full object-cover" />
+                <div className="aspect-[4/5] flex flex-col items-center justify-center text-center">
+                  <div className="mb-2 md:mb-3">
+                    <svg className="w-6 h-6 md:w-8 md:h-8 mx-auto text-[#b8894e]" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                  </div>
+                  <p className="text-[#1d1d1d]/50 text-[8px] md:text-xs tracking-widest uppercase mb-1 md:mb-2">Invitados</p>
+                  <h3 className="text-[#1d1d1d] font-medium text-xs md:text-sm mb-2 md:mb-3" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+                    {guestName}
+                  </h3>
+                  <div className="w-8 h-px bg-[#b8894e]/30 mb-2 md:mb-3" />
+                  <p className="text-[#1d1d1d]/70 text-[10px] md:text-xs">
+                    {guestCount} {guestCount === 1 ? 'persona' : 'personas'}
+                  </p>
                 </div>
                 <div className="h-3" />
               </motion.div>
 
-              {/* Photo 2 - Center (Ring Kiss) */}
+              {/* Card 2 - Center (Photo) */}
               <motion.div
                 className="absolute left-[28%] bottom-[5%] w-[44%] bg-white shadow-2xl p-2 origin-bottom-center"
                 style={{ zIndex: 30 }}
@@ -100,9 +114,9 @@ export const Envelope = ({ isOpen }: EnvelopeProps) => {
                 <div className="h-4" />
               </motion.div>
 
-              {/* Photo 3 - Right (Sunset Kiss) */}
+              {/* Card 3 - Right (Dress Code) */}
               <motion.div
-                className="absolute right-[0%] bottom-[8%] w-[38%] bg-white shadow-xl p-1.5 origin-bottom-right"
+                className="absolute right-[0%] bottom-[8%] w-[38%] bg-white shadow-xl p-3 md:p-4 origin-bottom-right"
                 style={{ zIndex: 20 }}
                 initial={{ rotate: 8, scale: 0.95 }}
                 animate={{
@@ -116,8 +130,20 @@ export const Envelope = ({ isOpen }: EnvelopeProps) => {
                   ease: smoothEase
                 }}
               >
-                <div className="aspect-[4/5] overflow-hidden">
-                  <img src="/DSC09599.jpg" alt="Beso al atardecer" className="w-full h-full object-cover" />
+                <div className="aspect-[4/5] flex flex-col items-center justify-center text-center">
+                  <div className="mb-2 md:mb-3">
+                    <svg className="w-6 h-6 md:w-8 md:h-8 mx-auto text-[#b8894e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" />
+                    </svg>
+                  </div>
+                  <p className="text-[#1d1d1d]/50 text-[8px] md:text-xs tracking-widest uppercase mb-1 md:mb-2">Código de</p>
+                  <h3 className="text-[#1d1d1d] font-medium text-xs md:text-sm mb-2 md:mb-3" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+                    Vestimenta
+                  </h3>
+                  <div className="w-8 h-px bg-[#b8894e]/30 mb-2 md:mb-3" />
+                  <p className="text-[#1d1d1d]/70 text-[10px] md:text-xs font-medium">
+                    Formal Elegante
+                  </p>
                 </div>
                 <div className="h-3" />
               </motion.div>

@@ -227,7 +227,7 @@ export const InvitationContent = ({ guestId }: InvitationContentProps) => {
             />
           </motion.div>
 
-          <Envelope isOpen={isOpen} />
+          <Envelope isOpen={isOpen} guestName={guestName} guestCount={3} />
         </div>
 
         {/* Logo at bottom with decorative elements */}
