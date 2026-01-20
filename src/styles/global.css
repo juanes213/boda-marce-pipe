@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+/* Custom font - Reina Neue Display */
+@font-face {
+  font-family: 'Reina Neue Display';
+  src: url('/fonts/ReinaNeueDisplay-Roman.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  /* Wedding Color Palette */
+  --color-wedding-black: #1d1d1d;
+  --color-wedding-white: #ffffff;
+  --color-wedding-cream: #f4f3ef;
+  
+  /* Legacy colors for compatibility */
+  --color-cream-50: #fdfcfb;
+  --color-cream-100: #f4f3ef;
+  --color-cream-200: #ebe4d8;
+  --color-cream-300: #ddd4c3;
+  
+  --color-gold-400: #d4a574;
+  --color-gold-500: #c9984a;
+  --color-gold-600: #b8894e;
+  
+  /* Fonts */
+  --font-display: 'Reina Neue Display', 'Playfair Display', Georgia, serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  
+  /* Animations */
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+  }
+  
+  @keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(212, 165, 116, 0.5), 0 0 10px rgba(212, 165, 116, 0.3); }
+    100% { box-shadow: 0 0 20px rgba(212, 165, 116, 0.8), 0 0 30px rgba(212, 165, 116, 0.5); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: #f4f3ef;
+    color: #1d1d1d;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}

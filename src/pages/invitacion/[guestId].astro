@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { InvitationContent } from '../../components/InvitationContent';
+
+export const prerender = false;
+
+const { guestId } = Astro.params;
+const guestName = guestId ? guestId.replace(/-/g, ' ') : 'Invitado';
+---
+
+<Layout title={`Invitación para ${guestName} - Marce & Pipe`} description="Has sido invitado a nuestra boda. ¡Nos casamos!">
+  <InvitationContent client:load guestId={guestId} />
+</Layout>
