@@ -60,7 +60,7 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
 
               {/* Card 1 - Left (Invitados) */}
               <motion.div
-                className="absolute left-[0%] bottom-[8%] w-[38%] bg-white shadow-xl p-3 md:p-4 origin-bottom-left"
+                className="absolute left-[0%] bottom-[8%] w-[38%] bg-white shadow-xl p-2 md:p-3 origin-bottom-left"
                 style={{ zIndex: 10 }}
                 initial={{ rotate: -8, scale: 0.95 }}
                 animate={{
@@ -74,22 +74,22 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
                   ease: smoothEase
                 }}
               >
-                <div className="aspect-[4/5] flex flex-col items-center justify-center text-center">
-                  <div className="mb-2 md:mb-3">
-                    <svg className="w-6 h-6 md:w-8 md:h-8 mx-auto text-[#b8894e]" fill="currentColor" viewBox="0 0 24 24">
+                <div className="aspect-[4/5] flex flex-col items-center justify-center text-center px-1 md:px-2">
+                  <div className="mb-1 md:mb-2">
+                    <svg className="w-5 h-5 md:w-7 md:h-7 mx-auto text-[#b8894e]" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                     </svg>
                   </div>
-                  <p className="text-[#1d1d1d]/50 text-[8px] md:text-xs tracking-widest uppercase mb-1 md:mb-2">Invitados</p>
-                  <h3 className="text-[#1d1d1d] font-medium text-xs md:text-sm mb-2 md:mb-3" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+                  <p className="text-[#1d1d1d]/50 text-[7px] md:text-[10px] tracking-wider uppercase mb-1">Invitados</p>
+                  <h3 className="text-[#1d1d1d] font-medium text-[10px] md:text-xs mb-1 md:mb-2 leading-tight px-1" style={{ fontFamily: "'Reina Neue Display', serif" }}>
                     {guestName}
                   </h3>
-                  <div className="w-8 h-px bg-[#b8894e]/30 mb-2 md:mb-3" />
-                  <p className="text-[#1d1d1d]/70 text-[10px] md:text-xs">
-                    {guestCount} {guestCount === 1 ? 'persona' : 'personas'}
+                  <div className="w-6 md:w-8 h-px bg-[#b8894e]/30 mb-1 md:mb-2" />
+                  <p className="text-[#1d1d1d]/70 text-[9px] md:text-[11px] leading-tight">
+                    {guestCount}<br/>{guestCount === 1 ? 'persona' : 'personas'}
                   </p>
                 </div>
-                <div className="h-3" />
+                <div className="h-2 md:h-3" />
               </motion.div>
 
               {/* Card 2 - Center (Photo) */}
@@ -116,7 +116,7 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
 
               {/* Card 3 - Right (Dress Code) */}
               <motion.div
-                className="absolute right-[0%] bottom-[8%] w-[38%] bg-white shadow-xl p-3 md:p-4 origin-bottom-right"
+                className="absolute right-[0%] bottom-[8%] w-[38%] bg-white shadow-xl p-2 md:p-3 origin-bottom-right"
                 style={{ zIndex: 20 }}
                 initial={{ rotate: 8, scale: 0.95 }}
                 animate={{
@@ -130,22 +130,22 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
                   ease: smoothEase
                 }}
               >
-                <div className="aspect-[4/5] flex flex-col items-center justify-center text-center">
-                  <div className="mb-2 md:mb-3">
-                    <svg className="w-6 h-6 md:w-8 md:h-8 mx-auto text-[#b8894e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="aspect-[4/5] flex flex-col items-center justify-center text-center px-1 md:px-2">
+                  <div className="mb-1 md:mb-2">
+                    <svg className="w-5 h-5 md:w-7 md:h-7 mx-auto text-[#b8894e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" />
                     </svg>
                   </div>
-                  <p className="text-[#1d1d1d]/50 text-[8px] md:text-xs tracking-widest uppercase mb-1 md:mb-2">Código de</p>
-                  <h3 className="text-[#1d1d1d] font-medium text-xs md:text-sm mb-2 md:mb-3" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+                  <p className="text-[#1d1d1d]/50 text-[7px] md:text-[10px] tracking-wider uppercase mb-1">Código de</p>
+                  <h3 className="text-[#1d1d1d] font-medium text-[10px] md:text-xs mb-1 md:mb-2 leading-tight" style={{ fontFamily: "'Reina Neue Display', serif" }}>
                     Vestimenta
                   </h3>
-                  <div className="w-8 h-px bg-[#b8894e]/30 mb-2 md:mb-3" />
-                  <p className="text-[#1d1d1d]/70 text-[10px] md:text-xs font-medium">
-                    Formal Elegante
+                  <div className="w-6 md:w-8 h-px bg-[#b8894e]/30 mb-1 md:mb-2" />
+                  <p className="text-[#1d1d1d]/70 text-[9px] md:text-[11px] font-medium leading-tight">
+                    Formal<br/>Elegante
                   </p>
                 </div>
-                <div className="h-3" />
+                <div className="h-2 md:h-3" />
               </motion.div>
 
             </div>
