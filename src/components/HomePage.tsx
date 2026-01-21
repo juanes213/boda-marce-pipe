@@ -384,27 +384,16 @@ const WeddingDetailsSection = () => (
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <motion.div 
-            className="w-16 h-16 mx-auto mb-6 flex items-center justify-center"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-          >
-            <svg className="w-12 h-12 text-[#1d1d1d]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-            </svg>
-          </motion.div>
-          <h3 
-            className="text-2xl md:text-3xl text-[#1d1d1d] mb-4"
+          <h3
+            className="text-2xl md:text-3xl text-[#1d1d1d] mb-6"
             style={{ fontFamily: "'Reina Neue Display', serif" }}
           >
             Ceremonia
           </h3>
-          <p className="text-[#1d1d1d]/70 mb-2">Domingo, 15 de Marzo de 2026</p>
+          <p className="text-[#1d1d1d]/70 mb-2">Viernes, 31 de Octubre de 2026</p>
           <p className="text-[#1d1d1d] text-xl mb-4">4:00 PM</p>
-          <p className="text-[#1d1d1d]/70 font-medium">Iglesia Santa María</p>
-          <p className="text-[#1d1d1d]/50 text-sm">Calle Principal #123, Ciudad</p>
+          <p className="text-[#1d1d1d]/70 font-medium">Parroquia de Santo Cruz de Manga</p>
+          <p className="text-[#1d1d1d]/50 text-sm">Cartagena de Indias, Colombia</p>
         </motion.div>
 
         {/* Reception */}
@@ -415,202 +404,252 @@ const WeddingDetailsSection = () => (
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.15 }}
         >
-          <motion.div 
-            className="w-16 h-16 mx-auto mb-6 flex items-center justify-center"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.35 }}
-          >
-            <svg className="w-12 h-12 text-[#1d1d1d]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
-            </svg>
-          </motion.div>
-          <h3 
-            className="text-2xl md:text-3xl text-[#1d1d1d] mb-4"
+          <h3
+            className="text-2xl md:text-3xl text-[#1d1d1d] mb-6"
             style={{ fontFamily: "'Reina Neue Display', serif" }}
           >
             Recepción
           </h3>
           <p className="text-[#1d1d1d]/70 mb-2">Después de la ceremonia</p>
-          <p className="text-[#1d1d1d] text-xl mb-4">6:00 PM</p>
-          <p className="text-[#1d1d1d]/70 font-medium">Hacienda Los Jardines</p>
-          <p className="text-[#1d1d1d]/50 text-sm">Carretera Norte Km 5, Ciudad</p>
+          <p className="text-[#1d1d1d] text-xl mb-4">6:30 PM</p>
+          <p className="text-[#1d1d1d]/70 font-medium">Hotel Intercontinental</p>
+          <p className="text-[#1d1d1d]/50 text-sm">Cartagena de Indias, Colombia</p>
         </motion.div>
       </div>
-
-      {/* Dress Code */}
-      <motion.div
-        className="mt-12 text-center"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-      >
-        <p className="text-[#1d1d1d]/50 tracking-widest text-sm uppercase mb-2">Código de vestimenta</p>
-        <p className="text-[#1d1d1d] text-xl" style={{ fontFamily: "'Reina Neue Display', serif" }}>
-          Formal Elegante
-        </p>
-      </motion.div>
     </div>
   </Section>
 );
 
-const DressCodeSection = () => (
-  <Section id="codigo-vestimenta" className="py-24 bg-white">
-    <div className="max-w-6xl mx-auto px-6">
-      <motion.div
-        className="text-center mb-16"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <p className="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-sm mb-4">Viste para la ocasión</p>
-        <h2
-          className="text-4xl md:text-5xl text-[#1d1d1d] mb-4"
-          style={{ fontFamily: "'Reina Neue Display', serif" }}
-        >
-          Código de Vestimenta
-        </h2>
-        <p className="text-[#1d1d1d]/70 text-xl" style={{ fontFamily: "'Reina Neue Display', serif" }}>
-          Formal Elegante
-        </p>
-      </motion.div>
+const DressCodeSection = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-      <div className="grid md:grid-cols-2 gap-12">
-        {/* Hombres */}
-        <motion.div
-          className="space-y-6"
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#1d1d1d]/5 mb-4">
-              <svg className="w-8 h-8 text-[#1d1d1d]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-            </div>
-            <h3 className="text-2xl text-[#1d1d1d]" style={{ fontFamily: "'Reina Neue Display', serif" }}>
-              Hombres
-            </h3>
-          </div>
-
-          <div className="bg-[#f4f3ef] rounded-lg p-6">
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <span className="text-[#b8894e] mt-1">✓</span>
-                <span className="text-[#1d1d1d]/80">Traje completo (saco + pantalón)</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#b8894e] mt-1">✓</span>
-                <span className="text-[#1d1d1d]/80">Camisa de vestir</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#b8894e] mt-1">✓</span>
-                <span className="text-[#1d1d1d]/80">Corbata o corbatín</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#b8894e] mt-1">✓</span>
-                <span className="text-[#1d1d1d]/80">Zapatos de vestir</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Imagen de ejemplo - placeholder */}
+  return (
+    <>
+      <Section id="codigo-vestimenta" className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div
-            className="aspect-[3/4] bg-gradient-to-br from-[#1d1d1d]/5 to-[#1d1d1d]/10 rounded-lg overflow-hidden"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="w-full h-full flex items-center justify-center">
-              <p className="text-[#1d1d1d]/30 text-sm">Imagen de referencia</p>
+            <p className="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-sm mb-4">Viste para la ocasión</p>
+            <h2
+              className="text-4xl md:text-5xl text-[#1d1d1d] mb-4"
+              style={{ fontFamily: "'Reina Neue Display', serif" }}
+            >
+              Código de Vestimenta
+            </h2>
+            <p className="text-[#1d1d1d]/70 text-xl mb-8" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+              Formal Elegante
+            </p>
+            <motion.button
+              onClick={() => setIsModalOpen(true)}
+              className="inline-flex items-center gap-2 px-8 py-3 bg-[#1d1d1d] text-white hover:bg-[#1d1d1d]/90 transition-all duration-300 rounded-sm"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="tracking-wide">Ver detalles</span>
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </motion.button>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-12 max-w-3xl mx-auto">
+            {/* Hombres */}
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#1d1d1d]/5 mb-4">
+                <svg className="w-8 h-8 text-[#1d1d1d]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl text-[#1d1d1d] mb-4" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+                Hombres
+              </h3>
+              <p className="text-[#1d1d1d] text-lg">Esmoquin</p>
+            </motion.div>
+
+            {/* Mujeres */}
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+            >
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#1d1d1d]/5 mb-4">
+                <svg className="w-8 h-8 text-[#1d1d1d]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl text-[#1d1d1d] mb-4" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+                Mujeres
+              </h3>
+              <p className="text-[#1d1d1d] text-lg">Vestido de Gala</p>
+            </motion.div>
+          </div>
+
+          {/* Nota adicional */}
+          <motion.div
+            className="mt-12 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <p className="text-[#1d1d1d]/60 text-sm">
+              Por favor evitar jeans, tenis y ropa casual
+            </p>
+          </motion.div>
+        </div>
+      </Section>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <motion.div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setIsModalOpen(false)}
+        >
+          <motion.div
+            className="relative w-full max-w-4xl bg-white rounded-lg overflow-hidden max-h-[90vh] overflow-y-auto"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-white transition-colors shadow-lg"
+            >
+              <svg className="w-5 h-5 text-[#1d1d1d]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="p-8 md:p-12">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl text-[#1d1d1d] mb-2" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+                  Código de Vestimenta
+                </h2>
+                <p className="text-[#1d1d1d]/70">Formal Elegante</p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Hombres con imagen */}
+                <div className="space-y-6">
+                  <div className="text-center">
+                    <h3 className="text-2xl text-[#1d1d1d] mb-4" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+                      Hombres
+                    </h3>
+                  </div>
+
+                  {/* Imagen de referencia */}
+                  <div className="aspect-[3/4] rounded-lg overflow-hidden mb-6">
+                    <img
+                      src="/esmoquin_hombre.avif"
+                      alt="Esmoquin para hombres"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  <div className="bg-[#f4f3ef] rounded-lg p-6">
+                    <p className="text-[#1d1d1d] text-lg mb-4 font-medium">Smoking</p>
+                    <ul className="space-y-3 text-[#1d1d1d]/80">
+                      <li className="flex items-start gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
+                        <span>Smoking completo</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
+                        <span>Camisa blanca formal</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
+                        <span>Corbatín negro</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
+                        <span>Zapatos de vestir negros</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Mujeres con imagen */}
+                <div className="space-y-6">
+                  <div className="text-center">
+                    <h3 className="text-2xl text-[#1d1d1d] mb-4" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+                      Mujeres
+                    </h3>
+                  </div>
+
+                  {/* Imagen de referencia */}
+                  <div className="aspect-[3/4] rounded-lg overflow-hidden mb-6">
+                    <img
+                      src="/vestido_gala.webp"
+                      alt="Vestido de gala para mujeres"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  <div className="bg-[#f4f3ef] rounded-lg p-6">
+                    <p className="text-[#1d1d1d] text-lg mb-4 font-medium">Vestido de Gala</p>
+                    <ul className="space-y-3 text-[#1d1d1d]/80">
+                      <li className="flex items-start gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
+                        <span>Vestido largo o midi elegante</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
+                        <span>Conjunto de gala</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
+                        <span>Accesorios elegantes</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
+                        <span>Tacones o zapatos formales</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 text-center">
+                <p className="text-[#1d1d1d]/60 text-sm">
+                  Por favor evitar jeans, tenis y ropa casual
+                </p>
+              </div>
             </div>
           </motion.div>
         </motion.div>
-
-        {/* Mujeres */}
-        <motion.div
-          className="space-y-6"
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#1d1d1d]/5 mb-4">
-              <svg className="w-8 h-8 text-[#1d1d1d]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-            </div>
-            <h3 className="text-2xl text-[#1d1d1d]" style={{ fontFamily: "'Reina Neue Display', serif" }}>
-              Mujeres
-            </h3>
-          </div>
-
-          <div className="bg-[#f4f3ef] rounded-lg p-6">
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <span className="text-[#b8894e] mt-1">✓</span>
-                <span className="text-[#1d1d1d]/80">Vestido largo o midi elegante</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#b8894e] mt-1">✓</span>
-                <span className="text-[#1d1d1d]/80">Conjunto de gala</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#b8894e] mt-1">✓</span>
-                <span className="text-[#1d1d1d]/80">Accesorios elegantes</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#b8894e] mt-1">✓</span>
-                <span className="text-[#1d1d1d]/80">Tacones o zapatos formales</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Imagen de ejemplo - placeholder */}
-          <motion.div
-            className="aspect-[3/4] bg-gradient-to-br from-[#1d1d1d]/5 to-[#1d1d1d]/10 rounded-lg overflow-hidden"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="w-full h-full flex items-center justify-center">
-              <p className="text-[#1d1d1d]/30 text-sm">Imagen de referencia</p>
-            </div>
-          </motion.div>
-        </motion.div>
-      </div>
-
-      {/* Nota adicional */}
-      <motion.div
-        className="mt-12 text-center"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-      >
-        <p className="text-[#1d1d1d]/60 text-sm">
-          Por favor evitar jeans, tenis y ropa casual
-        </p>
-      </motion.div>
-    </div>
-  </Section>
-);
+      )}
+    </>
+  );
+};
 
 const GallerySection = () => {
-  const [activeImage, setActiveImage] = useState<number | null>(null);
   const images = [
     { src: '/DSC09127.jpg', alt: 'Marce & Pipe' },
     { src: '/DSC08445.jpg', alt: 'Flores' },
     { src: '/DSC09599.jpg', alt: 'Atardecer' },
   ];
 
-  const handleImageClick = (index: number) => {
-    // Toggle active state on mobile tap
-    setActiveImage(activeImage === index ? null : index);
+  const handleImageClick = () => {
+    window.location.href = '/galeria';
   };
 
   return (
@@ -636,20 +675,24 @@ const GallerySection = () => {
           {images.map((image, index) => (
             <motion.div
               key={index}
-              className="aspect-[4/5] overflow-hidden group cursor-pointer"
+              className="aspect-[4/5] overflow-hidden group cursor-pointer relative"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              onClick={() => handleImageClick(index)}
+              onClick={handleImageClick}
             >
               <img
                 src={image.src}
                 alt={image.alt}
-                className={`w-full h-full object-cover transition-all duration-700
-                  ${activeImage === index ? 'grayscale-0 scale-105' : 'grayscale md:grayscale'}
-                  md:group-hover:grayscale-0 md:group-hover:scale-105`}
+                className="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105"
               />
+              {/* Overlay on hover */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-700 flex items-center justify-center">
+                <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-700 text-sm tracking-wider">
+                  Ver galería completa
+                </span>
+              </div>
             </motion.div>
           ))}
         </div>
