@@ -34,7 +34,7 @@ const Navbar = () => {
           }}
         />
         <div className="hidden md:flex gap-8 text-sm tracking-widest uppercase">
-          {['Nuestra Historia', 'La Boda', 'Vestimenta', 'Galería'].map((item) => {
+          {['La Boda', 'Vestimenta', 'Galería'].map((item) => {
             const href = item === 'Vestimenta' ? '#codigo-vestimenta' : `#${item.toLowerCase().replace(' ', '-')}`;
             return (
             <a
@@ -202,7 +202,7 @@ const CountdownSection = () => {
   ];
 
   return (
-    <Section className="py-20 bg-[#1d1d1d] text-white">
+    <Section className="py-20 bg-[#0D2100] text-white">
       <div className="max-w-6xl mx-auto px-6">
         <motion.p
           className="text-white/60 tracking-[0.3em] uppercase text-sm mb-12 text-center"
@@ -273,88 +273,7 @@ const CountdownSection = () => {
   );
 };
 
-const OurStorySection = () => (
-  <Section id="nuestra-historia" className="py-24 bg-[#f4f3ef]">
-    <div className="max-w-6xl mx-auto px-6">
-      <motion.div
-        className="text-center mb-16"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <p className="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-sm mb-4">Cómo comenzó todo</p>
-        <h2 
-          className="text-4xl md:text-5xl text-[#1d1d1d]"
-          style={{ fontFamily: "'Reina Neue Display', serif" }}
-        >
-          Nuestra Historia
-        </h2>
-      </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-12 items-center">
-        <motion.div
-          className="relative"
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <div className="aspect-[4/5] overflow-hidden">
-            <img 
-              src="/DSC09127.jpg" 
-              alt="Marce & Pipe"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          {/* Decorative frame */}
-          <motion.div 
-            className="absolute -inset-4 border border-[#1d1d1d]/10 -z-10"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          />
-        </motion.div>
-
-        <div className="space-y-8">
-          {[
-            { year: '2020', title: 'El comienzo', text: 'Nos conocimos en un momento inesperado, cuando menos lo buscábamos. Desde el primer instante supimos que había algo especial entre nosotros.' },
-            { year: '2024', title: 'La propuesta', text: 'Después de años construyendo recuerdos juntos, llegó el momento de dar el siguiente paso. Con el corazón lleno de amor, decidimos comenzar esta nueva aventura.' },
-            { year: '2026', title: 'Para siempre', text: 'Y ahora, estamos listos para celebrar nuestro amor rodeados de las personas más importantes en nuestras vidas.' },
-          ].map((item, index) => (
-            <motion.div
-              key={item.year}
-              className="space-y-3"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-            >
-              <div className="flex items-center gap-4">
-                <motion.div 
-                  className="w-12 h-px bg-[#1d1d1d]/30"
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.15 }}
-                  style={{ originX: 0 }}
-                />
-                <span className="text-[#1d1d1d]/50 text-sm tracking-widest">{item.year}</span>
-              </div>
-              <h3 className="text-2xl text-[#1d1d1d]" style={{ fontFamily: "'Reina Neue Display', serif" }}>
-                {item.title}
-              </h3>
-              <p className="text-[#1d1d1d]/70 leading-relaxed">
-                {item.text}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </Section>
-);
 
 const WeddingDetailsSection = () => (
   <Section id="la-boda" className="py-24 bg-white">
@@ -373,6 +292,7 @@ const WeddingDetailsSection = () => (
         >
           La Boda
         </h2>
+        <p className="text-[#1d1d1d]/60 text-lg tracking-wide mt-4">Viernes, 31 de Octubre de 2026</p>
       </motion.div>
 
       <div className="grid md:grid-cols-2 gap-8">
@@ -390,9 +310,15 @@ const WeddingDetailsSection = () => (
           >
             Ceremonia
           </h3>
-          <p className="text-[#1d1d1d]/70 mb-2">Viernes, 31 de Octubre de 2026</p>
           <p className="text-[#1d1d1d] text-xl mb-4">4:00 PM</p>
-          <p className="text-[#1d1d1d]/70 font-medium">Parroquia de Santo Cruz de Manga</p>
+          <a 
+            href="https://maps.google.com/?q=Parroquia+Santa+Cruz+de+Manga,+Cartagena" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-[#1d1d1d]/70 font-medium hover:text-[#1d1d1d] hover:underline transition-colors"
+          >
+            Parroquia Santa Cruz de Manga
+          </a>
           <p className="text-[#1d1d1d]/50 text-sm">Cartagena de Indias, Colombia</p>
         </motion.div>
 
@@ -410,9 +336,15 @@ const WeddingDetailsSection = () => (
           >
             Recepción
           </h3>
-          <p className="text-[#1d1d1d]/70 mb-2">Después de la ceremonia</p>
           <p className="text-[#1d1d1d] text-xl mb-4">6:30 PM</p>
-          <p className="text-[#1d1d1d]/70 font-medium">Hotel Intercontinental</p>
+          <a 
+            href="https://maps.google.com/?q=Hotel+Intercontinental,+Cartagena" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-[#1d1d1d]/70 font-medium hover:text-[#1d1d1d] hover:underline transition-colors"
+          >
+            Hotel Intercontinental
+          </a>
           <p className="text-[#1d1d1d]/50 text-sm">Cartagena de Indias, Colombia</p>
         </motion.div>
       </div>
@@ -422,10 +354,45 @@ const WeddingDetailsSection = () => (
 
 const DressCodeSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [menCarouselIndex, setMenCarouselIndex] = useState(0);
+  const [womenCarouselIndex, setWomenCarouselIndex] = useState(0);
+
+  const menImages = [
+    '/7.jpg',
+    '/8.jpg',
+    '/9.jpg',
+    '/10.jpg',
+    '/11.avif',
+  ];
+
+  const womenImages = [
+    '/1.jpg',
+    '/2.jpg',
+    '/3.jpg',
+    '/4.jpg',
+    '/5.jpg',
+    '/6.jpg',
+  ];
+
+  const handlePrevMen = () => {
+    setMenCarouselIndex((prev) => (prev === 0 ? menImages.length - 1 : prev - 1));
+  };
+
+  const handleNextMen = () => {
+    setMenCarouselIndex((prev) => (prev === menImages.length - 1 ? 0 : prev + 1));
+  };
+
+  const handlePrevWomen = () => {
+    setWomenCarouselIndex((prev) => (prev === 0 ? womenImages.length - 1 : prev - 1));
+  };
+
+  const handleNextWomen = () => {
+    setWomenCarouselIndex((prev) => (prev === womenImages.length - 1 ? 0 : prev + 1));
+  };
 
   return (
     <>
-      <Section id="codigo-vestimenta" className="py-24 bg-white">
+      <Section id="codigo-vestimenta" className="py-24 bg-[#f4f3ef]">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             className="text-center mb-16"
@@ -434,7 +401,6 @@ const DressCodeSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-sm mb-4">Viste para la ocasión</p>
             <h2
               className="text-4xl md:text-5xl text-[#1d1d1d] mb-4"
               style={{ fontFamily: "'Reina Neue Display', serif" }}
@@ -466,11 +432,6 @@ const DressCodeSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#1d1d1d]/5 mb-4">
-                <svg className="w-8 h-8 text-[#1d1d1d]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
               <h3 className="text-2xl text-[#1d1d1d] mb-4" style={{ fontFamily: "'Reina Neue Display', serif" }}>
                 Hombres
               </h3>
@@ -485,11 +446,6 @@ const DressCodeSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1 }}
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#1d1d1d]/5 mb-4">
-                <svg className="w-8 h-8 text-[#1d1d1d]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
               <h3 className="text-2xl text-[#1d1d1d] mb-4" style={{ fontFamily: "'Reina Neue Display', serif" }}>
                 Mujeres
               </h3>
@@ -522,7 +478,7 @@ const DressCodeSection = () => {
           onClick={() => setIsModalOpen(false)}
         >
           <motion.div
-            className="relative w-full max-w-4xl bg-white rounded-lg overflow-hidden max-h-[90vh] overflow-y-auto"
+            className="relative w-full max-w-4xl bg-white rounded-lg overflow-hidden max-h-[90vh] overflow-y-auto border border-[#32470c]"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
@@ -531,7 +487,7 @@ const DressCodeSection = () => {
             {/* Close button */}
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-white transition-colors shadow-lg"
+              className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-[#213500]/10 hover:bg-[#3b5110]/20 transition-colors shadow-lg"
             >
               <svg className="w-5 h-5 text-[#1d1d1d]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -539,15 +495,15 @@ const DressCodeSection = () => {
             </button>
 
             <div className="p-8 md:p-12">
-              <div className="text-center mb-12">
+              <div className="text-center mb-12 pb-6 border-b border-[#1d1d1d]/20">
                 <h2 className="text-3xl md:text-4xl text-[#1d1d1d] mb-2" style={{ fontFamily: "'Reina Neue Display', serif" }}>
                   Código de Vestimenta
                 </h2>
                 <p className="text-[#1d1d1d]/70">Formal Elegante</p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
-                {/* Hombres con imagen */}
+              <div className="grid md:grid-cols-2 gap-12 mb-12">
+                {/* Hombres Carrusel */}
                 <div className="space-y-6">
                   <div className="text-center">
                     <h3 className="text-2xl text-[#1d1d1d] mb-4" style={{ fontFamily: "'Reina Neue Display', serif" }}>
@@ -555,39 +511,67 @@ const DressCodeSection = () => {
                     </h3>
                   </div>
 
-                  {/* Imagen de referencia */}
-                  <div className="aspect-[3/4] rounded-lg overflow-hidden mb-6">
-                    <img
-                      src="/esmoquin_hombre.avif"
-                      alt="Esmoquin para hombres"
+                  {/* Carrusel de imágenes */}
+                  <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-gray-100 group">
+                    <motion.img
+                      key={menCarouselIndex}
+                      src={menImages[menCarouselIndex]}
+                      alt={`Hombre ${menCarouselIndex + 7}`}
                       className="w-full h-full object-cover"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
                     />
+
+                    {/* Controles del carrusel */}
+                    <button
+                      onClick={handlePrevMen}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={handleNextMen}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+
+                    {/* Indicador */}
+                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-white text-xs font-medium px-2 py-1 bg-black/40 rounded-full">
+                      {menCarouselIndex + 1} / {menImages.length}
+                    </div>
                   </div>
 
-                  <div className="bg-[#f4f3ef] rounded-lg p-6">
-                    <p className="text-[#1d1d1d] text-lg mb-4 font-medium">Smoking</p>
-                    <ul className="space-y-3 text-[#1d1d1d]/80">
-                      <li className="flex items-start gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
-                        <span>Smoking completo</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
-                        <span>Camisa blanca formal</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
-                        <span>Corbatín negro</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
-                        <span>Zapatos de vestir negros</span>
-                      </li>
-                    </ul>
+                  {/* Referencias de tiendas */}
+                  <div className="text-center pt-4 border-t border-[#1d1d1d]/20">
+                    <p className="text-[#1d1d1d]/70 text-sm mb-3">Encuentra estilos similares en:</p>
+                    <div className="space-y-4">
+                      {[
+                        { handle: '@boutiquegabriel', url: 'https://www.instagram.com/boutiquegabriel/' },
+                        { handle: '@dclase.co', url: 'https://www.instagram.com/dclase.co/' },
+                        { handle: '@valsersdiseno', url: 'https://www.instagram.com/valsersdisenos/' },
+                      ].map((brand) => (
+                        <a
+                          key={brand.handle}
+                          href={brand.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block text-[#1d1d1d]/80 font-medium text-sm hover:text-[#1f4903] transition-colors"
+                        >
+                          {brand.handle}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Mujeres con imagen */}
+                {/* Mujeres Carrusel */}
                 <div className="space-y-6">
                   <div className="text-center">
                     <h3 className="text-2xl text-[#1d1d1d] mb-4" style={{ fontFamily: "'Reina Neue Display', serif" }}>
@@ -595,43 +579,96 @@ const DressCodeSection = () => {
                     </h3>
                   </div>
 
-                  {/* Imagen de referencia */}
-                  <div className="aspect-[3/4] rounded-lg overflow-hidden mb-6">
-                    <img
-                      src="/vestido_gala.webp"
-                      alt="Vestido de gala para mujeres"
+                  {/* Carrusel de imágenes */}
+                  <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-gray-100 group">
+                    <motion.img
+                      key={womenCarouselIndex}
+                      src={womenImages[womenCarouselIndex]}
+                      alt={`Mujer ${womenCarouselIndex + 1}`}
                       className="w-full h-full object-cover"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
                     />
+
+                    {/* Controles del carrusel */}
+                    <button
+                      onClick={handlePrevWomen}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={handleNextWomen}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+
+                    {/* Indicador */}
+                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-white text-xs font-medium px-2 py-1 bg-black/40 rounded-full">
+                      {womenCarouselIndex + 1} / {womenImages.length}
+                    </div>
                   </div>
 
-                  <div className="bg-[#f4f3ef] rounded-lg p-6">
-                    <p className="text-[#1d1d1d] text-lg mb-4 font-medium">Vestido de Gala</p>
-                    <ul className="space-y-3 text-[#1d1d1d]/80">
-                      <li className="flex items-start gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
-                        <span>Vestido largo o midi elegante</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
-                        <span>Conjunto de gala</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
-                        <span>Accesorios elegantes</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#b8894e] mt-2 flex-shrink-0" />
-                        <span>Tacones o zapatos formales</span>
-                      </li>
-                    </ul>
+                  {/* Referencias de tiendas */}
+                  <div className="text-center pt-4 border-t border-[#1d1d1d]/20">
+                    <p className="text-[#1d1d1d]/70 text-sm mb-3">Encuentra estilos similares en:</p>
+                    <div className="space-y-4">
+                      {[
+                        { handle: '@pasarelarosaa', url: 'https://www.instagram.com/pasarelarosaa/' },
+                        { handle: '@vicky_tcherassi', url: 'https://www.instagram.com/vicky_tcherassi/' },
+                        { handle: '@baobab', url: 'https://www.instagram.com/baobab/' },
+                        { handle: '@tendenciastiendaderopa', url: 'https://www.instagram.com/baobab/' },
+                      ].map((brand) => (
+                        <a
+                          key={brand.handle}
+                          href={brand.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block text-[#1d1d1d]/80 font-medium text-sm hover:text-[#1f4903] transition-colors"
+                        >
+                          {brand.handle}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 text-center">
-                <p className="text-[#1d1d1d]/60 text-sm">
-                  Por favor evitar jeans, tenis y ropa casual
-                </p>
+              {/* Links de Pinterest */}
+              <div className="border-t border-[#1d1d1d]/20 pt-8 text-center space-y-4">
+                <div className="flex flex-col sm:flex-row justify-center gap-8 items-center">
+                  <a
+                    href="https://pin.it/6OMVFaaPJ"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#1d1d1d]/70 hover:text-[#1f4903] transition-colors text-sm font-medium underline underline-offset-4"
+                  >
+                    Qué SÍ usar
+                  </a>
+                  <span className="text-[#1d1d1d]/30 hidden sm:block">•</span>
+                  <a
+                    href="https://pin.it/6OyjGB0zF"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#1d1d1d]/70 hover:text-[#1f4903] transition-colors text-sm font-medium underline underline-offset-4"
+                  >
+                    Qué NO usar
+                  </a>
+                </div>
+              </div>
+
+              {/* Color Reservado */}
+              <div className="mt-12 pt-8 border-t border-[#1d1d1d]/20 text-center">
+                <p className="text-[#1d1d1d]/60 text-xs tracking-widest uppercase mb-2">Color Reservado</p>
+                <p className="text-[#1d1d1d]/80 text-sm font-medium">Verde</p>
+                <p className="text-[#1d1d1d]/50 text-xs mt-2 font-mono">#213500 • #293e06 • #32470c • #3b5110 • #214300 • #1f4903</p>
               </div>
             </div>
           </motion.div>
@@ -653,7 +690,7 @@ const GallerySection = () => {
   };
 
   return (
-    <Section id="galeria" className="py-24 bg-[#f4f3ef]">
+    <Section id="galeria" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           className="text-center mb-16"
@@ -770,7 +807,6 @@ export const HomePage = () => {
       <Navbar />
       <HeroSection />
       <CountdownSection />
-      <OurStorySection />
       <WeddingDetailsSection />
       <DressCodeSection />
       <GallerySection />

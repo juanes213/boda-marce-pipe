@@ -8,10 +8,10 @@ export const GalleryPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f4f3ef]">
+    <div className="min-h-screen bg-white">
       {/* Header with back button */}
       <motion.div
-        className="fixed top-0 left-0 right-0 z-50 bg-[#f4f3ef]/95 backdrop-blur-sm border-b border-[#1d1d1d]/10"
+        className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[#1d1d1d]/10"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
