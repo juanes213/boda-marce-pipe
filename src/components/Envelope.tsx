@@ -14,8 +14,10 @@ const heavyEase = [0.34, 1.56, 0.64, 1]; // Con ligero rebote
 const flapEase = [0.65, 0, 0.35, 1];
 
 export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 3 }: EnvelopeProps) => {
+  const compactGuestName = guestName.length > 34 ? `${guestName.slice(0, 31).trim()}...` : guestName;
+
   return (
-    <div className="relative w-full max-w-[360px] md:max-w-[420px] mx-auto">
+    <div className="relative w-full max-w-[340px] sm:max-w-[380px] md:max-w-[420px] mx-auto">
       {/* Envelope wrapper with fixed aspect ratio */}
       <div className="relative w-full" style={{ paddingBottom: '75%' }}>
 
@@ -80,12 +82,12 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
                       <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                     </svg>
                   </div>
-                  <p className="text-[#1d1d1d]/50 text-[7px] md:text-[10px] tracking-wider uppercase mb-1">Invitados</p>
-                  <h3 className="text-[#1d1d1d] font-medium text-[10px] md:text-xs mb-1 md:mb-2 leading-tight px-1" style={{ fontFamily: "'Reina Neue Display', serif" }}>
-                    {guestName}
+                  <p className="text-[#1d1d1d]/50 text-[6px] sm:text-[7px] md:text-[10px] tracking-wider uppercase mb-1">Invitado</p>
+                  <h3 className="text-[#1d1d1d] font-medium text-[9px] sm:text-[10px] md:text-xs mb-1 md:mb-2 leading-tight px-0.5 sm:px-1 break-words" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+                    {compactGuestName}
                   </h3>
                   <div className="w-6 md:w-8 h-px bg-[#b8894e]/30 mb-1 md:mb-2" />
-                  <p className="text-[#1d1d1d]/70 text-[9px] md:text-[11px] leading-tight">
+                  <p className="text-[#1d1d1d]/70 text-[8px] sm:text-[9px] md:text-[11px] leading-tight">
                     {guestCount}<br/>{guestCount === 1 ? 'persona' : 'personas'}
                   </p>
                 </div>
@@ -136,12 +138,12 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" />
                     </svg>
                   </div>
-                  <p className="text-[#1d1d1d]/50 text-[7px] md:text-[10px] tracking-wider uppercase mb-1">Código de</p>
-                  <h3 className="text-[#1d1d1d] font-medium text-[10px] md:text-xs mb-1 md:mb-2 leading-tight" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+                  <p className="text-[#1d1d1d]/50 text-[6px] sm:text-[7px] md:text-[10px] tracking-wider uppercase mb-1">Código de</p>
+                  <h3 className="text-[#1d1d1d] font-medium text-[9px] sm:text-[10px] md:text-xs mb-1 md:mb-2 leading-tight" style={{ fontFamily: "'Reina Neue Display', serif" }}>
                     Vestimenta
                   </h3>
                   <div className="w-6 md:w-8 h-px bg-[#b8894e]/30 mb-1 md:mb-2" />
-                  <p className="text-[#1d1d1d]/70 text-[9px] md:text-[11px] font-medium leading-tight">
+                  <p className="text-[#1d1d1d]/70 text-[8px] sm:text-[9px] md:text-[11px] font-medium leading-tight">
                     Formal<br/>Elegante
                   </p>
                 </div>
@@ -234,7 +236,7 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
             opacity: { duration: 0.25, delay: isOpen ? 0.15 : 0 }
           }}
         >
-          <div className="relative w-14 h-14 md:w-16 md:h-16 flex items-center justify-center">
+          <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center">
             <div
               className="absolute inset-0 rounded-full shadow-lg"
               style={{
@@ -242,7 +244,7 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
               }}
             />
             <div className="absolute inset-1 rounded-full border border-[#8b6914]/30" />
-            <span className="relative font-serif font-bold text-[#5a4a2a] text-base md:text-lg">MP</span>
+            <span className="relative font-serif font-bold text-[#5a4a2a] text-sm sm:text-base md:text-lg">MP</span>
           </div>
         </motion.div>
 

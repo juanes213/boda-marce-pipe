@@ -4,7 +4,8 @@ import { Envelope } from './Envelope';
 import { BackgroundGradient } from './BackgroundGradient';
 
 interface InvitationContentProps {
-  guestId?: string;
+  guestName: string;
+  guestCount: number;
 }
 
 // Decorative corner ornament component
@@ -26,7 +27,7 @@ const CornerOrnament = ({ position = 'top-left' }: { position?: 'top-left' | 'to
 
   return (
     <motion.div
-      className={`absolute ${getPositionClasses()} w-16 h-16 md:w-20 md:h-20 opacity-30`}
+      className={`absolute ${getPositionClasses()} hidden sm:block w-16 h-16 md:w-20 md:h-20 opacity-30`}
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 0.3, scale: 1 }}
       transition={{ duration: 1, delay: 0.5 }}
@@ -58,7 +59,7 @@ const CornerOrnament = ({ position = 'top-left' }: { position?: 'top-left' | 'to
 const FloralElement = ({ delay = 0, side = 'left' }: { delay?: number; side?: 'left' | 'right' }) => {
   return (
     <motion.div
-      className={`absolute ${side === 'left' ? 'left-0' : 'right-0'} w-24 md:w-32 opacity-20`}
+      className={`absolute ${side === 'left' ? 'left-0' : 'right-0'} hidden sm:block w-24 md:w-32 opacity-20`}
       style={{ top: '30%' }}
       initial={{ opacity: 0, x: side === 'left' ? -50 : 50 }}
       animate={{ opacity: 0.2, x: 0 }}
@@ -96,10 +97,8 @@ const FloralElement = ({ delay = 0, side = 'left' }: { delay?: number; side?: 'l
   );
 };
 
-export const InvitationContent = ({ guestId }: InvitationContentProps) => {
+export const InvitationContent = ({ guestName, guestCount }: InvitationContentProps) => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const guestName = guestId ? guestId.replace(/-/g, ' ') : 'Invitado';
 
   useEffect(() => {
     // Auto-open envelope after 1.5 seconds
@@ -111,7 +110,7 @@ export const InvitationContent = ({ guestId }: InvitationContentProps) => {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full bg-[#f4f3ef] overflow-hidden">
+    <div className="relative min-h-[100svh] w-full bg-[#f4f3ef] overflow-x-hidden">
       {/* Background */}
       <BackgroundGradient />
 
@@ -126,7 +125,7 @@ export const InvitationContent = ({ guestId }: InvitationContentProps) => {
         <img
           src="/Recurso 6@1000x.png"
           alt="Volver al inicio"
-          className="h-8 md:h-10 w-auto"
+          className="h-7 md:h-10 w-auto"
         />
       </motion.a>
 
@@ -163,10 +162,10 @@ export const InvitationContent = ({ guestId }: InvitationContentProps) => {
       />
 
       {/* Main content */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center px-4 py-8 md:py-12">
+      <div className="relative z-10 min-h-[100svh] flex flex-col items-center px-4 pt-20 pb-8 sm:pt-16 md:py-12">
         {/* Header text with decorative elements */}
         <motion.div
-          className="text-center mb-10 md:mb-12 relative"
+          className="text-center mb-6 md:mb-12 relative max-w-sm sm:max-w-none"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -184,7 +183,7 @@ export const InvitationContent = ({ guestId }: InvitationContentProps) => {
           </motion.div>
 
           <motion.p
-            className="text-[#1d1d1d]/60 text-sm md:text-base tracking-widest mb-4 italic"
+            className="text-[#1d1d1d]/60 text-xs sm:text-sm md:text-base tracking-[0.18em] sm:tracking-widest mb-4 italic"
             style={{ fontFamily: "'Reina Neue Display', serif" }}
             animate={{ opacity: [0.5, 0.8, 0.5] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -193,7 +192,7 @@ export const InvitationContent = ({ guestId }: InvitationContentProps) => {
           </motion.p>
 
           <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl text-[#1d1d1d] tracking-wide relative"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#1d1d1d] tracking-wide relative"
             style={{ fontFamily: "'Reina Neue Display', serif" }}
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
@@ -226,7 +225,7 @@ export const InvitationContent = ({ guestId }: InvitationContentProps) => {
         </motion.div>
 
         {/* Envelope Container with decorative frame */}
-        <div className="relative w-full max-w-md mx-auto flex-1 flex items-center justify-center mt-8 md:mt-12">
+        <div className="relative w-full max-w-[min(92vw,420px)] mx-auto flex items-center justify-center mt-8 md:mt-12 min-h-[300px] sm:min-h-[340px]">
           {/* Subtle decorative frame around envelope */}
           <motion.div
             className="absolute inset-0 -z-10"
@@ -242,12 +241,12 @@ export const InvitationContent = ({ guestId }: InvitationContentProps) => {
             />
           </motion.div>
 
-          <Envelope isOpen={isOpen} guestName={guestName} guestCount={3} />
+          <Envelope isOpen={isOpen} guestName={guestName} guestCount={guestCount} />
         </div>
 
         {/* Logo at bottom with decorative elements */}
         <motion.div
-          className="mt-8 md:mt-12 relative"
+          className="mt-4 md:mt-12 relative"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
@@ -266,7 +265,7 @@ export const InvitationContent = ({ guestId }: InvitationContentProps) => {
           <img
             src="/Recurso 1@1000x.png"
             alt="Marce & Pipe"
-            className="h-12 md:h-16 lg:h-20 w-auto"
+            className="h-10 sm:h-12 md:h-16 lg:h-20 w-auto"
           />
 
           {/* Decorative line below logo */}
@@ -283,7 +282,7 @@ export const InvitationContent = ({ guestId }: InvitationContentProps) => {
 
         {/* Guest name greeting with decorative background */}
         <motion.div
-          className="mt-8 relative"
+          className="mt-7 md:mt-8 relative max-w-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
@@ -303,7 +302,7 @@ export const InvitationContent = ({ guestId }: InvitationContentProps) => {
               ease: "easeInOut"
             }}
           />
-          <p className="text-[#1d1d1d]/50 text-sm tracking-wide px-6 py-2">
+          <p className="text-center text-[#1d1d1d]/50 text-xs sm:text-sm tracking-wide px-4 sm:px-6 py-2">
             Invitación para: <span className="font-medium capitalize text-[#1d1d1d]/70">{guestName}</span>
           </p>
         </motion.div>

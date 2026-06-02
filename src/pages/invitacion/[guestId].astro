@@ -1,13 +1,36 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { InvitationContent } from '../../components/InvitationContent';
+import { getGuestById } from '../../data/guests';
 
 export const prerender = false;
 
 const { guestId } = Astro.params;
-const guestName = guestId ? guestId.replace(/-/g, ' ') : 'Invitado';
+const guest = getGuestById(guestId);
+
+if (!guest) {
+  Astro.response.status = 404;
+}
 ---
 
-<Layout title={`Invitación para ${guestName} - Marce & Pipe`} description="Has sido invitado a nuestra boda. ¡Nos casamos!">
-  <InvitationContent client:load guestId={guestId} />
+<Layout
+  title={guest ? `Invitación para ${guest.name} - Marce & Pipe` : 'Invitación no encontrada - Marce & Pipe'}
+  description="Has sido invitado a nuestra boda. ¡Nos casamos!"
+>
+  {guest ? (
+    <InvitationContent client:load guestName={guest.name} guestCount={guest.seats} />
+  ) : (
+    <main class="min-h-screen bg-[#f4f3ef] flex items-center justify-center px-6 text-center">
+      <section class="max-w-md">
+        <img src="/Recurso 1@1000x.png" alt="Marce & Pipe" class="h-20 w-auto mx-auto mb-8" />
+        <p class="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-sm mb-4">Invitación</p>
+        <h1 class="text-4xl text-[#1d1d1d] mb-4" style="font-family: 'Reina Neue Display', serif">
+          No encontrada
+        </h1>
+        <p class="text-[#1d1d1d]/70">
+          Este enlace no corresponde a una invitación registrada. Revisa el link o contacta a los novios.
+        </p>
+      </section>
+    </main>
+  )}
 </Layout>

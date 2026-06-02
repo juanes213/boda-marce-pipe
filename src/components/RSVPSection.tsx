@@ -1,177 +1,61 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-// Datos de ejemplo - más adelante esto vendrá de una base de datos
-const guestList = [
-  { id: 1, apellido: 'García', nombreCompleto: 'Familia García', personas: 4 },
-  { id: 2, apellido: 'Rodríguez', nombreCompleto: 'Familia Rodríguez', personas: 3 },
-  { id: 3, apellido: 'Martínez', nombreCompleto: 'Familia Martínez', personas: 5 },
-  { id: 4, apellido: 'López', nombreCompleto: 'Familia López', personas: 2 },
-  { id: 5, apellido: 'González', nombreCompleto: 'Familia González', personas: 6 },
-  // ... aquí irían los 200 invitados
-];
-
 export const RSVPSection = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredGuests, setFilteredGuests] = useState<typeof guestList>([]);
-  const [selectedGuest, setSelectedGuest] = useState<typeof guestList[0] | null>(null);
-  const [showResults, setShowResults] = useState(false);
-
-  const handleSearch = (value: string) => {
-    setSearchTerm(value);
-    if (value.length >= 2) {
-      const filtered = guestList.filter(guest =>
-        guest.apellido.toLowerCase().includes(value.toLowerCase())
-      );
-      setFilteredGuests(filtered);
-      setShowResults(true);
-    } else {
-      setShowResults(false);
-      setFilteredGuests([]);
-    }
-  };
-
-  const handleSelectGuest = (guest: typeof guestList[0]) => {
-    setSelectedGuest(guest);
-    setSearchTerm(guest.apellido);
-    setShowResults(false);
-  };
-
-  const handleViewInvitation = () => {
-    if (selectedGuest) {
-      // Redirigir a la invitación personalizada
-      window.location.href = `/invitacion/${selectedGuest.nombreCompleto.toLowerCase().replace(/ /g, '-')}`;
-    }
-  };
-
   return (
-    <section className="py-24 bg-[#f4f3ef]" id="confirmar-asistencia">
-      <div className="max-w-4xl mx-auto px-6">
+    <section className="py-16 md:py-24 bg-[#f4f3ef]" id="confirmar-asistencia">
+      <div className="max-w-4xl mx-auto px-4 md:px-6">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-sm mb-4">
-            Encuentra tu invitación
+          <p className="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-xs md:text-sm mb-4">
+            Invitación personalizada
           </p>
           <h2
-            className="text-4xl md:text-5xl text-[#1d1d1d] mb-4"
+            className="text-3xl md:text-5xl text-[#1d1d1d] mb-4"
             style={{ fontFamily: "'Reina Neue Display', serif" }}
           >
-            Confirmar Asistencia
+            Tu enlace es único
           </h2>
-          <p className="text-[#1d1d1d]/70 max-w-2xl mx-auto">
-            Busca tu apellido para acceder a tu invitación personalizada
+          <p className="text-[#1d1d1d]/70 max-w-2xl mx-auto text-sm md:text-base">
+            Cada invitado recibirá un enlace personal con su nombre y cupo asignado.
           </p>
         </motion.div>
 
         <motion.div
-          className="max-w-xl mx-auto"
+          className="max-w-xl mx-auto bg-white border border-[#1d1d1d]/10 rounded-lg p-6 md:p-8 text-center shadow-sm"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {/* Buscador */}
-          <div className="relative mb-6">
-            <div className="relative">
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => handleSearch(e.target.value)}
-                placeholder="Escribe tu apellido..."
-                className="w-full px-6 py-4 pr-12 text-lg bg-white border-2 border-[#1d1d1d]/10 rounded-lg focus:outline-none focus:border-[#b8894e] transition-colors"
-                style={{ fontFamily: "'Reina Neue Display', serif" }}
-              />
-              <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                <svg className="w-6 h-6 text-[#1d1d1d]/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </div>
-            </div>
-
-            {/* Resultados de búsqueda */}
-            {showResults && filteredGuests.length > 0 && (
-              <motion.div
-                className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-[#1d1d1d]/10 overflow-hidden z-10"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                {filteredGuests.map((guest) => (
-                  <button
-                    key={guest.id}
-                    onClick={() => handleSelectGuest(guest)}
-                    className="w-full px-6 py-4 text-left hover:bg-[#f4f3ef] transition-colors border-b border-[#1d1d1d]/5 last:border-0"
-                  >
-                    <p className="text-[#1d1d1d] font-medium">{guest.nombreCompleto}</p>
-                    <p className="text-[#1d1d1d]/50 text-sm">{guest.personas} personas</p>
-                  </button>
-                ))}
-              </motion.div>
-            )}
-
-            {showResults && filteredGuests.length === 0 && searchTerm.length >= 2 && (
-              <motion.div
-                className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-[#1d1d1d]/10 p-6 z-10"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <p className="text-[#1d1d1d]/60 text-center">
-                  No se encontraron resultados. Intenta con otro apellido.
-                </p>
-              </motion.div>
-            )}
+          <div className="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#b8894e]/10 mb-5 md:mb-6">
+            <svg className="w-7 h-7 md:w-8 md:h-8 text-[#b8894e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21.75 6.75v10.5A2.25 2.25 0 0119.5 19.5h-15A2.25 2.25 0 012.25 17.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15A2.25 2.25 0 002.25 6.75m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0l-7.5-4.615A2.25 2.25 0 012.25 6.993V6.75" />
+            </svg>
           </div>
 
-          {/* Tarjeta de invitación seleccionada */}
-          {selectedGuest && (
-            <motion.div
-              className="bg-white rounded-lg shadow-lg border border-[#1d1d1d]/10 p-8"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="text-center mb-6">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#b8894e]/10 mb-4">
-                  <svg className="w-8 h-8 text-[#b8894e]" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm-1-11h2v6h-2zm0 8h2v2h-2z"/>
-                  </svg>
-                </div>
-                <h3
-                  className="text-2xl text-[#1d1d1d] mb-2"
-                  style={{ fontFamily: "'Reina Neue Display', serif" }}
-                >
-                  {selectedGuest.nombreCompleto}
-                </h3>
-                <p className="text-[#1d1d1d]/60">
-                  Invitación para {selectedGuest.personas} {selectedGuest.personas === 1 ? 'persona' : 'personas'}
-                </p>
-              </div>
-
-              <button
-                onClick={handleViewInvitation}
-                className="w-full bg-[#1d1d1d] text-white py-4 px-6 rounded-lg hover:bg-[#1d1d1d]/90 transition-all duration-300 font-medium tracking-wide"
-              >
-                Ver Mi Invitación
-              </button>
-            </motion.div>
-          )}
-
-          {/* Mensaje de ayuda */}
-          <motion.p
-            className="text-center text-[#1d1d1d]/50 text-sm mt-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+          <h3
+            className="text-2xl text-[#1d1d1d] mb-3"
+            style={{ fontFamily: "'Reina Neue Display', serif" }}
           >
-            ¿No encuentras tu apellido? Contáctanos por WhatsApp
-          </motion.p>
+            Revisa el link que recibiste
+          </h3>
+          <p className="text-[#1d1d1d]/60 mb-6 text-sm md:text-base">
+            Si tienes dudas sobre tu invitación o cupo, contacta directamente a los novios.
+          </p>
+
+          <a
+            href="https://wa.me/573001234567"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-12 w-full sm:w-auto items-center justify-center bg-[#1d1d1d] text-white py-4 px-6 rounded-lg hover:bg-[#1d1d1d]/90 transition-all duration-300 font-medium tracking-wide"
+          >
+            Contactar por WhatsApp
+          </a>
         </motion.div>
       </div>
     </section>
