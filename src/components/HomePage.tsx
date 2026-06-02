@@ -96,7 +96,10 @@ const HeroSection = () => {
   });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const heroImages = galleryImages.slice(0, 8);
+  const heroImages = [
+    ...galleryImages.filter((image) => image.src.includes('DSC02785')),
+    ...galleryImages.filter((image) => !image.src.includes('DSC02785')),
+  ].slice(0, 8);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -166,7 +169,7 @@ const HeroSection = () => {
           />
 
           <motion.p
-            className="text-white text-base md:text-xl tracking-widest drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+            className="text-[#213500] text-base md:text-xl tracking-widest drop-shadow-[0_1px_6px_rgba(244,243,239,0.85)]"
             style={{ fontFamily: "'Reina Neue Display', serif" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -518,7 +521,7 @@ const DressCodeSection = () => {
               <h3 className="text-xl md:text-2xl text-[#1d1d1d] mb-2 md:mb-4" style={{ fontFamily: "'Reina Neue Display', serif" }}>
                 Caballeros
               </h3>
-              <p className="text-[#1d1d1d] text-sm md:text-lg">Esmoquin negro</p>
+              <p className="text-[#1d1d1d] text-sm md:text-lg">Smokin negro</p>
             </motion.div>
 
             {/* Mujeres */}
@@ -597,13 +600,13 @@ const DressCodeSection = () => {
 
               <div className="text-center mb-8">
                 <p className="text-[#1d1d1d]/60 text-xs tracking-widest uppercase mb-2">
-                  Sugerencias
+                  Inspiración
                 </p>
                 <h3
                   className="text-2xl md:text-3xl text-[#1d1d1d]"
                   style={{ fontFamily: "'Reina Neue Display', serif" }}
                 >
-                  Qué usar
+                  Referencias sugeridas
                 </h3>
               </div>
 
@@ -745,16 +748,16 @@ const DressCodeSection = () => {
                 </div>
               </div>
 
-              {/* Looks no recomendados */}
+              {/* Estilos no sugeridos */}
               <div className="border-t border-[#1d1d1d]/20 pt-6 md:pt-8 text-center">
                 <p className="text-[#1d1d1d]/60 text-xs tracking-widest uppercase mb-2">
-                  Evitar
+                  Consideraciones
                 </p>
                 <h3
                   className="text-2xl md:text-3xl text-[#1d1d1d] mb-6"
                   style={{ fontFamily: "'Reina Neue Display', serif" }}
                 >
-                  Qué no usar
+                  Estilos no sugeridos
                 </h3>
 
                 <div className="grid md:grid-cols-2 gap-8 md:gap-10">
