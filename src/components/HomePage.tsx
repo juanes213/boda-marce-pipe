@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { RSVPSection } from './RSVPSection';
+import { galleryImages } from '../data/galleryImages';
 
 // Navbar with scroll-aware background
 const Navbar = () => {
@@ -88,12 +89,22 @@ const Section = ({ children, className = '', id, delay = 0 }: {
 
 const HeroSection = () => {
   const ref = useRef(null);
+  const [heroImageIndex, setHeroImageIndex] = useState(0);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
   });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const heroImages = galleryImages.slice(0, 8);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroImageIndex((prev) => (prev === heroImages.length - 1 ? 0 : prev + 1));
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [heroImages.length]);
 
   return (
     <section ref={ref} className="relative min-h-[100svh] overflow-hidden">
@@ -103,46 +114,67 @@ const HeroSection = () => {
         style={{ y }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-[#1d1d1d]/30 via-transparent to-[#f4f3ef]" />
-        <img 
-          src="/DSC09599.jpg" 
-          alt="Marce & Pipe"
-          className="w-full h-full object-cover object-center"
-        />
+        {heroImages.map((image, index) => (
+          <motion.img
+            key={image.src}
+            src={image.src}
+            alt={image.alt}
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            initial={false}
+            animate={{ opacity: index === heroImageIndex ? 1 : 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+          />
+        ))}
         <div className="absolute inset-0 bg-gradient-to-t from-[#f4f3ef] via-[#f4f3ef]/50 to-transparent" />
       </motion.div>
 
       {/* Content */}
       <motion.div 
-        className="relative z-10 min-h-[100svh] flex flex-col justify-end items-center pb-16 md:pb-20 px-4"
+        className="relative z-10 min-h-[100svh] px-4 text-center"
         style={{ opacity }}
       >
-        <motion.p
-          className="text-[#1d1d1d]/70 text-xs md:text-base tracking-[0.3em] uppercase mb-4"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          ¡Nos casamos!
-        </motion.p>
-        
-        <motion.img 
-          src="/Recurso 1@1000x.png" 
-          alt="Marce & Pipe"
-          className="h-16 sm:h-20 md:h-28 lg:h-36 w-auto mb-5 md:mb-6"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        />
+        <div className="absolute left-1/2 top-[30%] w-full max-w-[34rem] -translate-x-1/2 px-4">
+          <motion.p
+            className="text-[#1d1d1d] text-lg md:text-2xl tracking-[0.3em] uppercase drop-shadow-[0_1px_6px_rgba(244,243,239,0.65)]"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            ¡Nos casamos!
+          </motion.p>
+        </div>
 
-        <motion.p
-          className="text-[#1d1d1d] text-base md:text-xl tracking-widest"
-          style={{ fontFamily: "'Reina Neue Display', serif" }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-        >
-          31 de Octubre, 2026
-        </motion.p>
+        <div className="absolute left-1/2 top-[48%] w-full max-w-[36rem] -translate-x-1/2 -translate-y-1/2 px-6">
+          <motion.p
+            className="text-[#1d1d1d] text-sm md:text-base leading-relaxed drop-shadow-[0_1px_6px_rgba(244,243,239,0.7)]"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.45 }}
+          >
+            Con la bendición de Dios y el amor de nuestras familias, tenemos el honor de invitarte a celebrar nuestro matrimonio
+          </motion.p>
+        </div>
+
+        <div className="absolute left-1/2 bottom-14 md:bottom-16 flex w-full -translate-x-1/2 flex-col items-center px-4">
+          <motion.img 
+            src="/Recurso 1@1000x.png" 
+            alt="Marce & Pipe"
+            className="h-16 sm:h-20 md:h-28 lg:h-36 w-auto mb-5 md:mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          />
+
+          <motion.p
+            className="text-white text-base md:text-xl tracking-widest drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+            style={{ fontFamily: "'Reina Neue Display', serif" }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            31 de Octubre, 2026
+          </motion.p>
+        </div>
 
         {/* Scroll indicator */}
         <motion.div 
@@ -285,13 +317,10 @@ const WeddingDetailsSection = () => (
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <p className="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-xs md:text-sm mb-4">Guarda la fecha</p>
-        <h2 
-          className="text-3xl md:text-5xl text-[#1d1d1d]"
-          style={{ fontFamily: "'Reina Neue Display', serif" }}
-        >
-          La Boda
-        </h2>
+        <p className="max-w-3xl mx-auto text-[#1d1d1d]/70 text-base md:text-lg leading-relaxed mb-6">
+          Después de un camino compartido lleno de amor, fe, servicio y gratitud, ha llegado el día con el que desde hace 9 años soñamos
+        </p>
+        <p className="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-xs md:text-sm mb-4">Reserve esta fecha especial</p>
         <p className="text-[#1d1d1d]/60 text-base md:text-lg tracking-wide mt-3 md:mt-4">Viernes, 31 de Octubre de 2026</p>
       </motion.div>
 
@@ -308,9 +337,9 @@ const WeddingDetailsSection = () => (
             className="text-2xl md:text-3xl text-[#1d1d1d] mb-4 md:mb-6"
             style={{ fontFamily: "'Reina Neue Display', serif" }}
           >
-            Ceremonia
+            Ceremonia religiosa
           </h3>
-          <p className="text-[#1d1d1d] text-lg md:text-xl mb-3 md:mb-4">4:30 PM</p>
+          <p className="text-[#1d1d1d] text-lg md:text-xl mb-3 md:mb-4">4:30pm</p>
           <a 
             href="https://maps.google.com/?q=Parroquia+Santa+Cruz+de+Manga,+Cartagena" 
             target="_blank" 
@@ -334,9 +363,9 @@ const WeddingDetailsSection = () => (
             className="text-2xl md:text-3xl text-[#1d1d1d] mb-4 md:mb-6"
             style={{ fontFamily: "'Reina Neue Display', serif" }}
           >
-            Recepción
+            Cóctel y Recepción
           </h3>
-          <p className="text-[#1d1d1d] text-lg md:text-xl mb-3 md:mb-4">6:30 PM</p>
+          <p className="text-[#1d1d1d] text-lg md:text-xl mb-3 md:mb-4">6:30pm</p>
           <a 
             href="https://maps.google.com/?q=Hotel+Intercontinental,+Cartagena" 
             target="_blank" 
@@ -356,6 +385,8 @@ const DressCodeSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [menCarouselIndex, setMenCarouselIndex] = useState(0);
   const [womenCarouselIndex, setWomenCarouselIndex] = useState(0);
+  const [menAvoidCarouselIndex, setMenAvoidCarouselIndex] = useState(0);
+  const [womenAvoidCarouselIndex, setWomenAvoidCarouselIndex] = useState(0);
   const reservedGreenColors = ['#213500', '#293e06', '#32470c', '#3b5110', '#214300', '#1f4903'];
 
   const menImages = [
@@ -413,6 +444,35 @@ const DressCodeSection = () => {
     setWomenCarouselIndex((prev) => (prev === womenImages.length - 1 ? 0 : prev + 1));
   };
 
+  const handlePrevMenAvoid = () => {
+    setMenAvoidCarouselIndex((prev) => (prev === 0 ? menAvoidImages.length - 1 : prev - 1));
+  };
+
+  const handleNextMenAvoid = () => {
+    setMenAvoidCarouselIndex((prev) => (prev === menAvoidImages.length - 1 ? 0 : prev + 1));
+  };
+
+  const handlePrevWomenAvoid = () => {
+    setWomenAvoidCarouselIndex((prev) => (prev === 0 ? womenAvoidImages.length - 1 : prev - 1));
+  };
+
+  const handleNextWomenAvoid = () => {
+    setWomenAvoidCarouselIndex((prev) => (prev === womenAvoidImages.length - 1 ? 0 : prev + 1));
+  };
+
+  useEffect(() => {
+    if (!isModalOpen) return;
+
+    const timer = setInterval(() => {
+      setMenCarouselIndex((prev) => (prev === menImages.length - 1 ? 0 : prev + 1));
+      setWomenCarouselIndex((prev) => (prev === womenImages.length - 1 ? 0 : prev + 1));
+      setMenAvoidCarouselIndex((prev) => (prev === menAvoidImages.length - 1 ? 0 : prev + 1));
+      setWomenAvoidCarouselIndex((prev) => (prev === womenAvoidImages.length - 1 ? 0 : prev + 1));
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [isModalOpen, menImages.length, womenImages.length, menAvoidImages.length, womenAvoidImages.length]);
+
   return (
     <>
       <Section id="codigo-vestimenta" className="py-16 md:py-24 bg-[#f4f3ef]">
@@ -431,7 +491,7 @@ const DressCodeSection = () => {
               Código de Vestimenta
             </h2>
             <p className="text-[#1d1d1d]/70 text-lg md:text-xl mb-6 md:mb-8" style={{ fontFamily: "'Reina Neue Display', serif" }}>
-              Formal Elegante
+              Black Tie (Etiqueta de gala)
             </p>
             <motion.button
               onClick={() => setIsModalOpen(true)}
@@ -456,9 +516,9 @@ const DressCodeSection = () => {
               transition={{ duration: 0.7 }}
             >
               <h3 className="text-xl md:text-2xl text-[#1d1d1d] mb-2 md:mb-4" style={{ fontFamily: "'Reina Neue Display', serif" }}>
-                Hombres
+                Caballeros
               </h3>
-              <p className="text-[#1d1d1d] text-sm md:text-lg">Esmoquin</p>
+              <p className="text-[#1d1d1d] text-sm md:text-lg">Esmoquin negro</p>
             </motion.div>
 
             {/* Mujeres */}
@@ -470,24 +530,11 @@ const DressCodeSection = () => {
               transition={{ duration: 0.7, delay: 0.1 }}
             >
               <h3 className="text-xl md:text-2xl text-[#1d1d1d] mb-2 md:mb-4" style={{ fontFamily: "'Reina Neue Display', serif" }}>
-                Mujeres
+                Damas
               </h3>
-              <p className="text-[#1d1d1d] text-sm md:text-lg">Vestido de Gala</p>
+              <p className="text-[#1d1d1d] text-sm md:text-lg">Vestido largo de gala unicolor</p>
             </motion.div>
           </div>
-
-          {/* Nota adicional */}
-          <motion.div
-            className="mt-8 md:mt-12 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <p className="text-[#1d1d1d]/60 text-sm">
-              Por favor evitar jeans, tenis y ropa casual
-            </p>
-          </motion.div>
         </div>
       </Section>
 
@@ -523,15 +570,49 @@ const DressCodeSection = () => {
                 <h2 className="text-3xl md:text-4xl text-[#1d1d1d] mb-2 pr-10 sm:pr-0" style={{ fontFamily: "'Reina Neue Display', serif" }}>
                   Código de Vestimenta
                 </h2>
-                <p className="text-[#1d1d1d]/70">Formal Elegante</p>
+                <p className="text-[#1d1d1d]/70">Black Tie (Etiqueta de gala)</p>
+              </div>
+
+              <p className="max-w-2xl mx-auto text-center text-[#1d1d1d]/60 text-sm md:text-base italic -mt-4 md:-mt-8 mb-8 md:mb-12">
+                Te agradecemos acompañarnos siguiendo el código de vestimenta sugerido para esta celebración
+              </p>
+
+              {/* Color Reservado */}
+              <div className="mb-10 md:mb-12 pb-8 md:pb-10 border-b border-[#1d1d1d]/20 text-center">
+                <p className="text-[#1d1d1d]/60 text-xs tracking-widest uppercase mb-2">Color Reservado</p>
+                <p className="text-[#1d1d1d]/80 text-sm font-medium">Verde</p>
+                <div className="mt-5 flex flex-wrap justify-center gap-3 md:gap-4">
+                  {reservedGreenColors.map((color) => (
+                    <div key={color} className="flex flex-col items-center gap-2">
+                      <span
+                        className="block h-9 w-9 md:h-10 md:w-10 rounded-full border border-[#1d1d1d]/10 shadow-sm"
+                        style={{ backgroundColor: color }}
+                        aria-label={`Tono reservado ${color}`}
+                      />
+                      <span className="text-[#1d1d1d]/45 text-[10px] font-mono">{color}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="text-center mb-8">
+                <p className="text-[#1d1d1d]/60 text-xs tracking-widest uppercase mb-2">
+                  Sugerencias
+                </p>
+                <h3
+                  className="text-2xl md:text-3xl text-[#1d1d1d]"
+                  style={{ fontFamily: "'Reina Neue Display', serif" }}
+                >
+                  Qué usar
+                </h3>
               </div>
 
               <div className="grid md:grid-cols-2 gap-10 md:gap-12 mb-10 md:mb-12">
-                {/* Hombres Carrusel */}
+                {/* Caballeros Carrusel */}
                 <div className="space-y-5 md:space-y-6">
                   <div className="text-center">
                     <h3 className="text-2xl text-[#1d1d1d] mb-3 md:mb-4" style={{ fontFamily: "'Reina Neue Display', serif" }}>
-                      Hombres
+                      Para Caballeros
                     </h3>
                   </div>
 
@@ -569,39 +650,50 @@ const DressCodeSection = () => {
                     </button>
 
                     {/* Indicador */}
-                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-white text-xs font-medium px-2 py-1 bg-black/40 rounded-full">
-                      {menCarouselIndex + 1} / {menImages.length}
+                    <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5 rounded-full bg-black/35 px-2 py-1.5">
+                      {menImages.map((image, index) => (
+                        <button
+                          key={image}
+                          onClick={() => setMenCarouselIndex(index)}
+                          className={`h-1.5 rounded-full transition-all ${index === menCarouselIndex ? 'w-4 bg-white' : 'w-1.5 bg-white/55'}`}
+                          aria-label={`Ver referencia de hombres ${index + 1}`}
+                        />
+                      ))}
                     </div>
                   </div>
 
                   {/* Referencias de tiendas */}
                   <div className="text-center pt-4 border-t border-[#1d1d1d]/20">
-                    <p className="text-[#1d1d1d]/70 text-sm mb-3">Encuentra estilos similares en:</p>
+                    <p className="text-[#1d1d1d]/70 text-sm mb-3">Referencias sugeridas</p>
                     <div className="space-y-4">
                       {[
-                        { handle: '@boutiquegabriel', url: 'https://www.instagram.com/boutiquegabriel/' },
-                        { handle: '@dclase.co', url: 'https://www.instagram.com/dclase.co/' },
-                        { handle: '@valsersdiseno', url: 'https://www.instagram.com/valsersdisenos/' },
+                        { handle: 'boutiquegabriel', url: 'https://www.instagram.com/boutiquegabriel/' },
+                        { handle: 'dclase.co', url: 'https://www.instagram.com/dclase.co/', featured: true },
+                        { handle: 'valserdiseno', url: 'https://www.instagram.com/valsersdisenos/' },
+                        { handle: 'adrianavergara', url: 'https://www.instagram.com/adrianavergara/' },
                       ].map((brand) => (
                         <a
                           key={brand.handle}
                           href={brand.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block text-[#1d1d1d]/80 font-medium text-sm hover:text-[#1f4903] transition-colors"
+                          className={`block text-[#1d1d1d]/80 text-sm hover:text-[#1f4903] transition-colors ${brand.featured ? 'font-bold' : 'font-medium'}`}
                         >
                           {brand.handle}
                         </a>
                       ))}
                     </div>
+                    <p className="mt-5 text-[#1d1d1d]/60 text-sm leading-relaxed">
+                      Si deseas ir a D&apos;Clase por tu smoking, solo menciona nuestros nombres -Marce&Pipe- y obtendrás un descuento especial en tu alquiler para nuestra boda.
+                    </p>
                   </div>
                 </div>
 
-                {/* Mujeres Carrusel */}
+                {/* Damas Carrusel */}
                 <div className="space-y-5 md:space-y-6">
                   <div className="text-center">
                     <h3 className="text-2xl text-[#1d1d1d] mb-3 md:mb-4" style={{ fontFamily: "'Reina Neue Display', serif" }}>
-                      Mujeres
+                      Para Damas
                     </h3>
                   </div>
 
@@ -639,30 +731,14 @@ const DressCodeSection = () => {
                     </button>
 
                     {/* Indicador */}
-                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-white text-xs font-medium px-2 py-1 bg-black/40 rounded-full">
-                      {womenCarouselIndex + 1} / {womenImages.length}
-                    </div>
-                  </div>
-
-                  {/* Referencias de tiendas */}
-                  <div className="text-center pt-4 border-t border-[#1d1d1d]/20">
-                    <p className="text-[#1d1d1d]/70 text-sm mb-3">Encuentra estilos similares en:</p>
-                    <div className="space-y-4">
-                      {[
-                        { handle: '@pasarelarosaa', url: 'https://www.instagram.com/pasarelarosaa/' },
-                        { handle: '@vicky_tcherassi', url: 'https://www.instagram.com/vicky_tcherassi/' },
-                        { handle: '@baobab', url: 'https://www.instagram.com/baobab/' },
-                        { handle: '@tendenciastiendaderopa', url: 'https://www.instagram.com/baobab/' },
-                      ].map((brand) => (
-                        <a
-                          key={brand.handle}
-                          href={brand.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block text-[#1d1d1d]/80 font-medium text-sm hover:text-[#1f4903] transition-colors"
-                        >
-                          {brand.handle}
-                        </a>
+                    <div className="absolute bottom-3 left-1/2 flex max-w-[80%] -translate-x-1/2 flex-wrap justify-center gap-1.5 rounded-full bg-black/35 px-2 py-1.5">
+                      {womenImages.map((image, index) => (
+                        <button
+                          key={image}
+                          onClick={() => setWomenCarouselIndex(index)}
+                          className={`h-1.5 rounded-full transition-all ${index === womenCarouselIndex ? 'w-4 bg-white' : 'w-1.5 bg-white/55'}`}
+                          aria-label={`Ver referencia de mujeres ${index + 1}`}
+                        />
                       ))}
                     </div>
                   </div>
@@ -672,75 +748,107 @@ const DressCodeSection = () => {
               {/* Looks no recomendados */}
               <div className="border-t border-[#1d1d1d]/20 pt-6 md:pt-8 text-center">
                 <p className="text-[#1d1d1d]/60 text-xs tracking-widest uppercase mb-2">
-                  Qué NO llevar
+                  Evitar
                 </p>
                 <h3
                   className="text-2xl md:text-3xl text-[#1d1d1d] mb-6"
                   style={{ fontFamily: "'Reina Neue Display', serif" }}
                 >
-                  Evita estos estilos
+                  Qué no usar
                 </h3>
 
                 <div className="grid md:grid-cols-2 gap-8 md:gap-10">
                   <div>
                     <p className="text-center text-[#1d1d1d]/70 text-sm font-medium mb-4">
-                      Hombres
+                      Caballeros
                     </p>
-                    <div className="grid grid-cols-3 gap-2 md:gap-3">
-                      {menAvoidImages.map((image, index) => (
-                        <div
-                          key={image}
-                          className="aspect-[3/4] overflow-hidden rounded-md bg-[#f4f3ef] border border-[#1d1d1d]/10"
-                        >
-                          <img
-                            src={image}
-                            alt={`Ejemplo no recomendado para hombres ${index + 1}`}
-                            className="w-full h-full object-contain"
-                            loading="lazy"
+                    <div className="relative aspect-[3/4] max-h-[62svh] rounded-lg overflow-hidden bg-[#f4f3ef] border border-[#1d1d1d]/10 group">
+                      <motion.img
+                        key={menAvoidCarouselIndex}
+                        src={menAvoidImages[menAvoidCarouselIndex]}
+                        alt={`Ejemplo no recomendado para hombres ${menAvoidCarouselIndex + 1}`}
+                        className="w-full h-full object-contain"
+                        loading="lazy"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      <button
+                        onClick={handlePrevMenAvoid}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-white/85 hover:bg-white opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity shadow"
+                        aria-label="Ver ejemplo anterior no recomendado para hombres"
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+                      <button
+                        onClick={handleNextMenAvoid}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-white/85 hover:bg-white opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity shadow"
+                        aria-label="Ver siguiente ejemplo no recomendado para hombres"
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                      <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5 rounded-full bg-black/35 px-2 py-1.5">
+                        {menAvoidImages.map((image, index) => (
+                          <button
+                            key={image}
+                            onClick={() => setMenAvoidCarouselIndex(index)}
+                            className={`h-1.5 rounded-full transition-all ${index === menAvoidCarouselIndex ? 'w-4 bg-white' : 'w-1.5 bg-white/55'}`}
+                            aria-label={`Ver ejemplo no recomendado para hombres ${index + 1}`}
                           />
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
                   </div>
 
                   <div>
                     <p className="text-center text-[#1d1d1d]/70 text-sm font-medium mb-4">
-                      Mujeres
+                      Damas
                     </p>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 md:gap-3">
-                      {womenAvoidImages.map((image, index) => (
-                        <div
-                          key={image}
-                          className="aspect-[3/4] overflow-hidden rounded-md bg-[#f4f3ef] border border-[#1d1d1d]/10"
-                        >
-                          <img
-                            src={image}
-                            alt={`Ejemplo no recomendado para mujeres ${index + 1}`}
-                            className="w-full h-full object-contain"
-                            loading="lazy"
+                    <div className="relative aspect-[3/4] max-h-[62svh] rounded-lg overflow-hidden bg-[#f4f3ef] border border-[#1d1d1d]/10 group">
+                      <motion.img
+                        key={womenAvoidCarouselIndex}
+                        src={womenAvoidImages[womenAvoidCarouselIndex]}
+                        alt={`Ejemplo no recomendado para mujeres ${womenAvoidCarouselIndex + 1}`}
+                        className="w-full h-full object-contain"
+                        loading="lazy"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      <button
+                        onClick={handlePrevWomenAvoid}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-white/85 hover:bg-white opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity shadow"
+                        aria-label="Ver ejemplo anterior no recomendado para mujeres"
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+                      <button
+                        onClick={handleNextWomenAvoid}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-white/85 hover:bg-white opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity shadow"
+                        aria-label="Ver siguiente ejemplo no recomendado para mujeres"
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                      <div className="absolute bottom-3 left-1/2 flex max-w-[80%] -translate-x-1/2 flex-wrap justify-center gap-1.5 rounded-full bg-black/35 px-2 py-1.5">
+                        {womenAvoidImages.map((image, index) => (
+                          <button
+                            key={image}
+                            onClick={() => setWomenAvoidCarouselIndex(index)}
+                            className={`h-1.5 rounded-full transition-all ${index === womenAvoidCarouselIndex ? 'w-4 bg-white' : 'w-1.5 bg-white/55'}`}
+                            aria-label={`Ver ejemplo no recomendado para mujeres ${index + 1}`}
                           />
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Color Reservado */}
-              <div className="mt-10 md:mt-12 pt-6 md:pt-8 border-t border-[#1d1d1d]/20 text-center">
-                <p className="text-[#1d1d1d]/60 text-xs tracking-widest uppercase mb-2">Color Reservado</p>
-                <p className="text-[#1d1d1d]/80 text-sm font-medium">Verde</p>
-                <div className="mt-5 flex flex-wrap justify-center gap-3 md:gap-4">
-                  {reservedGreenColors.map((color) => (
-                    <div key={color} className="flex flex-col items-center gap-2">
-                      <span
-                        className="block h-9 w-9 md:h-10 md:w-10 rounded-full border border-[#1d1d1d]/10 shadow-sm"
-                        style={{ backgroundColor: color }}
-                        aria-label={`Tono reservado ${color}`}
-                      />
-                      <span className="text-[#1d1d1d]/45 text-[10px] font-mono">{color}</span>
-                    </div>
-                  ))}
                 </div>
               </div>
             </div>
@@ -752,11 +860,7 @@ const DressCodeSection = () => {
 };
 
 const GallerySection = () => {
-  const images = [
-    { src: '/DSC09127.jpg', alt: 'Marce & Pipe' },
-    { src: '/DSC08445.jpg', alt: 'Flores' },
-    { src: '/DSC09599.jpg', alt: 'Atardecer' },
-  ];
+  const images = galleryImages.slice(0, 6);
 
   const handleImageClick = () => {
     window.location.href = '/galeria';
@@ -772,7 +876,7 @@ const GallerySection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-xs md:text-sm mb-4">Momentos especiales</p>
+          <p className="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-xs md:text-sm mb-4">Momentos que llevamos en el corazón</p>
           <h2
             className="text-3xl md:text-5xl text-[#1d1d1d]"
             style={{ fontFamily: "'Reina Neue Display', serif" }}
@@ -831,36 +935,8 @@ const FooterSection = () => (
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.1 }}
       >
-        Esperamos celebrar este día tan especial junto a ti
+        Nos encantará compartir contigo un día inolvidable
       </motion.p>
-
-      <motion.div
-        className="flex justify-center gap-6 mb-6 md:mb-8"
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <a 
-          href="https://wa.me/573001234567" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="text-white/60 hover:text-white transition-colors duration-300"
-        >
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-        </a>
-        <a 
-          href="mailto:marceypipe@email.com"
-          className="text-white/60 hover:text-white transition-colors duration-300"
-        >
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-        </a>
-      </motion.div>
-
       <motion.p 
         className="text-white/30 text-sm"
         initial={{ opacity: 0 }}

@@ -1,11 +1,8 @@
 import { motion } from 'framer-motion';
+import { galleryImages } from '../data/galleryImages';
 
 export const GalleryPage = () => {
-  const images = [
-    { src: '/DSC09127.jpg', alt: 'Marce & Pipe' },
-    { src: '/DSC08445.jpg', alt: 'Flores' },
-    { src: '/DSC09599.jpg', alt: 'Atardecer' },
-  ];
+  const images = galleryImages;
 
   return (
     <div className="min-h-[100svh] bg-white">
@@ -49,7 +46,7 @@ export const GalleryPage = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p className="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-xs md:text-sm mb-4">
-              Nuestros momentos especiales
+              Momentos que llevamos en el corazón
             </p>
             <h2
               className="text-3xl md:text-5xl text-[#1d1d1d]"
