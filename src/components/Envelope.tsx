@@ -273,6 +273,17 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
           />
         </div>
 
+        <motion.div
+          className="absolute bottom-[8%] left-1/2 z-40 -translate-x-1/2 pointer-events-none text-center"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : 8 }}
+          transition={{ duration: 0.45, delay: isOpen ? 0.95 : 0 }}
+        >
+          <p className="whitespace-nowrap text-sm leading-relaxed text-[#f4f3ef] drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:text-base md:text-lg">
+            Lluvia de sobres
+          </p>
+        </motion.div>
+
         {/* === LAYER 4: TOP FLAP (Triangle that opens) === */}
         <motion.div
           className="absolute inset-0 z-30 pointer-events-none"

@@ -310,6 +310,17 @@ export const InvitationContent = ({ guestId, guestName, guestCount }: Invitation
           <Envelope isOpen={isOpen} guestName={guestName} guestCount={guestCount} />
         </div>
 
+        <motion.div
+          className="mt-7 w-full max-w-2xl px-4 text-center md:mt-9"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : 16 }}
+          transition={{ duration: 0.6, delay: 1.05 }}
+        >
+          <p className="text-sm leading-relaxed text-[#1d1d1d]/65 md:text-base">
+            Aunque adoramos a los más pequeños, en esta ocasión hemos reservado la celebración <strong className="font-semibold text-[#1d1d1d]/80">exclusivamente para adultos</strong>. Gracias por acompañarnos en este día tan especial
+          </p>
+        </motion.div>
+
         <RsvpConfirmation />
 
         {/* Logo at bottom with decorative elements */}
