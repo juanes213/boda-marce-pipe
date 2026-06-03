@@ -961,8 +961,7 @@ export const HomePage = ({ showGuestSearch = false }: HomePageProps) => {
       <WeddingDetailsSection />
       <DressCodeSection />
       <GallerySection />
-      <RSVPSection />
-      {showGuestSearch && <GuestSearch />}
+      {showGuestSearch ? <GuestSearch /> : <RSVPSection />}
       <FooterSection />
     </div>
   );

@@ -72,7 +72,7 @@ export const GuestSearch = () => {
         transition={{ duration: 0.7 }}
       >
         <p className="mb-3 text-xs uppercase tracking-[0.32em] text-[#213500]/70">
-          Invitación personalizada
+          Listado de invitados
         </p>
         <h2 className="font-['Reina_Neue_Display',serif] text-4xl text-[#1d1d1d] md:text-5xl">
           Busca tu invitación
