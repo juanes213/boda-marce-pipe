@@ -24,11 +24,15 @@ const repairMojibake = (value: string) => {
 
 const getGuestName = (guest: Guest) => repairMojibake(guest.name);
 
-const matchesFullName = (query: string, guest: Guest) => {
+const matchesGuest = (query: string, guest: Guest) => {
   const name = normalizeSearch(getGuestName(guest));
   const slug = normalizeSearch(guest.id.replace(/-/g, ' '));
 
-  return name === query || slug === query;
+  if (name === query || slug === query) return true;
+  if (name.includes(query) || slug.includes(query)) return true;
+
+  const tokens = query.split(' ').filter(Boolean);
+  return tokens.length > 1 && tokens.every((token) => name.includes(token) || slug.includes(token));
 };
 
 export const GuestSearch = () => {
@@ -38,10 +42,11 @@ export const GuestSearch = () => {
   const suggestions = useMemo(() => {
     if (normalizedQuery.length < 4) return [];
 
-    return guests
-      .filter((guest) => matchesFullName(normalizedQuery, guest))
-      .sort((a, b) => getGuestName(a).localeCompare(getGuestName(b)))
-      .slice(0, 5);
+    const matches = guests
+      .filter((guest) => matchesGuest(normalizedQuery, guest))
+      .sort((a, b) => getGuestName(a).localeCompare(getGuestName(b)));
+
+    return matches.length === 1 ? matches : [];
   }, [normalizedQuery]);
 
   const showNoResults = normalizedQuery.length >= 4 && suggestions.length === 0;
@@ -66,7 +71,7 @@ export const GuestSearch = () => {
           Busca tu invitación
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#1d1d1d]/65 md:text-base">
-          Escribe tu nombre completo para abrir tu carta personalizada.
+          Escribe tu nombre o apellidos. Por privacidad, solo mostraremos una invitación cuando encontremos una coincidencia única.
         </p>
 
         <div className="relative mx-auto mt-8 max-w-xl">
@@ -97,7 +102,7 @@ export const GuestSearch = () => {
 
               {showNoResults && (
                 <div className="px-5 py-5 text-center text-sm text-[#1d1d1d]/65">
-                  No encontramos ese nombre completo. Contacta a los novios.
+                  No encontramos una coincidencia única. Escribe un poco más de tu nombre o contacta a los novios.
                 </div>
               )}
             </div>
