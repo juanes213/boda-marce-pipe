@@ -24,21 +24,11 @@ const repairMojibake = (value: string) => {
 
 const getGuestName = (guest: Guest) => repairMojibake(guest.name);
 
-const getScore = (query: string, guest: Guest) => {
+const matchesFullName = (query: string, guest: Guest) => {
   const name = normalizeSearch(getGuestName(guest));
   const slug = normalizeSearch(guest.id.replace(/-/g, ' '));
 
-  if (!query) return 0;
-  if (name === query || slug === query) return 100;
-  if (name.startsWith(query) || slug.startsWith(query)) return 80;
-  if (name.includes(query) || slug.includes(query)) return 60;
-
-  const tokens = query.split(' ').filter(Boolean);
-  if (tokens.length && tokens.every((token) => name.includes(token) || slug.includes(token))) {
-    return 40;
-  }
-
-  return 0;
+  return name === query || slug === query;
 };
 
 export const GuestSearch = () => {
@@ -46,17 +36,15 @@ export const GuestSearch = () => {
   const normalizedQuery = normalizeSearch(query);
 
   const suggestions = useMemo(() => {
-    if (normalizedQuery.length < 2) return [];
+    if (normalizedQuery.length < 4) return [];
 
     return guests
-      .map((guest) => ({ guest, score: getScore(normalizedQuery, guest) }))
-      .filter(({ score }) => score > 0)
-      .sort((a, b) => b.score - a.score || getGuestName(a.guest).localeCompare(getGuestName(b.guest)))
-      .slice(0, 5)
-      .map(({ guest }) => guest);
+      .filter((guest) => matchesFullName(normalizedQuery, guest))
+      .sort((a, b) => getGuestName(a).localeCompare(getGuestName(b)))
+      .slice(0, 5);
   }, [normalizedQuery]);
 
-  const showNoResults = normalizedQuery.length >= 2 && suggestions.length === 0;
+  const showNoResults = normalizedQuery.length >= 4 && suggestions.length === 0;
 
   const handleSelect = (guest: Guest) => {
     window.location.href = getInvitationPath(guest);
@@ -78,7 +66,7 @@ export const GuestSearch = () => {
           Busca tu invitación
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#1d1d1d]/65 md:text-base">
-          Escribe tu nombre y selecciona tu resultado para abrir tu carta personalizada.
+          Escribe tu nombre completo para abrir tu carta personalizada.
         </p>
 
         <div className="relative mx-auto mt-8 max-w-xl">
@@ -86,8 +74,8 @@ export const GuestSearch = () => {
             type="text"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Escribe tu nombre"
-            aria-label="Buscar invitación por nombre"
+            placeholder="Escribe tu nombre completo"
+            aria-label="Buscar invitación por nombre completo"
             className="w-full rounded-full border border-[#1d1d1d]/15 bg-white px-6 py-4 text-center text-base text-[#1d1d1d] shadow-[0_18px_45px_rgba(29,29,29,0.08)] outline-none transition focus:border-[#213500] focus:ring-4 focus:ring-[#213500]/10"
           />
 
@@ -109,7 +97,7 @@ export const GuestSearch = () => {
 
               {showNoResults && (
                 <div className="px-5 py-5 text-center text-sm text-[#1d1d1d]/65">
-                  No encontramos tu nombre. Contacta a los novios.
+                  No encontramos ese nombre completo. Contacta a los novios.
                 </div>
               )}
             </div>
