@@ -324,7 +324,7 @@ const WeddingDetailsSection = () => (
         <p className="max-w-3xl mx-auto text-[#1d1d1d]/70 text-base md:text-lg leading-relaxed mb-6">
           Después de un camino compartido lleno de amor, fe, servicio y gratitud, ha llegado el día con el que desde hace 9 años soñamos
         </p>
-        <p className="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-xs md:text-sm mb-4">Reserve esta fecha especial</p>
+        <p className="text-[#1d1d1d]/50 tracking-[0.3em] uppercase text-xs md:text-sm mb-4">Reserva esta fecha especial</p>
         <p className="text-[#1d1d1d]/60 text-base md:text-lg tracking-wide mt-3 md:mt-4">Sábado, 31 de Octubre de 2026</p>
       </motion.div>
 
