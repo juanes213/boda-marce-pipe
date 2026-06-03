@@ -503,7 +503,7 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
                       ))}
                     </div>
                     <p className="mt-5 text-sm leading-relaxed text-[#1d1d1d]/60">
-                      Si deseas ir a D&apos;Clase por tu smoking, solo menciona nuestros nombres -Marce&Pipe- y obtendrás un descuento especial en tu alquiler para nuestra boda.
+                      Si deseas ir a D&apos;Clase por tu esmoquin, solo menciona nuestros nombres -Marce&Pipe- y obtendrás un descuento especial en tu alquiler para nuestra boda.
                     </p>
                   </div>
                 </div>

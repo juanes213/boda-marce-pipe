@@ -516,7 +516,7 @@ const DressCodeSection = () => {
               <h3 className="text-xl md:text-2xl text-[#1d1d1d] mb-2 md:mb-4" style={{ fontFamily: "'Reina Neue Display', serif" }}>
                 Caballeros
               </h3>
-              <p className="text-[#1d1d1d] text-sm md:text-lg">Smokin negro</p>
+              <p className="text-[#1d1d1d] text-sm md:text-lg">Esmoquin negro</p>
             </motion.div>
 
             {/* Mujeres */}
@@ -682,7 +682,7 @@ const DressCodeSection = () => {
                       ))}
                     </div>
                     <p className="mt-5 text-[#1d1d1d]/60 text-sm leading-relaxed">
-                      Si deseas ir a D&apos;Clase por tu smoking, solo menciona nuestros nombres -Marce&Pipe- y obtendrás un descuento especial en tu alquiler para nuestra boda.
+                      Si deseas ir a D&apos;Clase por tu esmoquin, solo menciona nuestros nombres -Marce&Pipe- y obtendrás un descuento especial en tu alquiler para nuestra boda.
                     </p>
                   </div>
                 </div>
