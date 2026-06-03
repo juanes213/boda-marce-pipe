@@ -93,9 +93,9 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
   }, [isVideoOpen]);
 
   return (
-    <div className="relative w-full max-w-[340px] sm:max-w-[380px] md:max-w-[420px] mx-auto">
+    <div className="relative w-full max-w-[420px] sm:max-w-[500px] md:max-w-[560px] mx-auto">
       {/* Envelope wrapper with fixed aspect ratio */}
-      <div className="relative w-full" style={{ paddingBottom: '75%' }}>
+      <div className="relative w-full" style={{ paddingBottom: '56%' }}>
 
         {/* === LAYER 1: ENVELOPE BACK (black base) === */}
         <div className="absolute inset-0 rounded-sm overflow-hidden drop-shadow-2xl z-0">
@@ -127,7 +127,7 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
           <motion.div
             className="absolute inset-0 flex justify-center items-end"
             initial={{ y: '80%' }}
-            animate={{ y: isOpen ? '-36%' : '80%' }}
+            animate={{ y: isOpen ? '-18%' : '80%' }}
             transition={{
               duration: 0.9,
               delay: isOpen ? 0.25 : 0,
@@ -138,7 +138,7 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
 
               {/* Card 1 - Left (Invitados) */}
               <motion.div
-                className="absolute left-[-2%] bottom-[18%] w-[40%] bg-white shadow-xl p-2 md:p-3 origin-bottom-left"
+                className="absolute left-[-2%] bottom-[8%] w-[40%] bg-white shadow-xl p-2 md:p-3 origin-bottom-left"
                 style={{ zIndex: 10 }}
                 initial={{ rotate: -8, scale: 0.95 }}
                 animate={{
@@ -173,7 +173,7 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
 
               {/* Card 2 - Center (Video) */}
               <motion.div
-                className="absolute left-[27%] bottom-[18%] w-[46%] bg-white shadow-2xl p-2 origin-bottom-center"
+                className="absolute left-[27%] bottom-[8%] w-[46%] bg-white shadow-2xl p-2 origin-bottom-center"
                 style={{ zIndex: 30 }}
                 initial={{ rotate: 0, scale: 0.95 }}
                 animate={{
@@ -220,7 +220,7 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
               <motion.button
                 type="button"
                 onClick={() => isOpen && setIsDressCodeOpen(true)}
-                className="absolute right-[-2%] bottom-[18%] w-[40%] bg-white shadow-xl p-2 md:p-3 origin-bottom-right"
+                className="absolute right-[-2%] bottom-[8%] w-[40%] bg-white shadow-xl p-2 md:p-3 origin-bottom-right"
                 style={{ zIndex: 20 }}
                 initial={{ rotate: 8, scale: 0.95 }}
                 animate={{
@@ -265,10 +265,10 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
         {/* === LAYER 3: FRONT FLAP (Bottom V) - Always on top of photos === */}
         <div className="absolute inset-0 z-20 pointer-events-none rounded-sm overflow-hidden">
           <div
-            className="absolute inset-x-0 bottom-0 h-[50%]"
+            className="absolute inset-0"
             style={{
               background: 'linear-gradient(to bottom, #252525, #1d1d1d)',
-              clipPath: 'polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%)',
+              clipPath: 'polygon(0 62%, 50% 76%, 100% 62%, 100% 100%, 0 100%)',
             }}
           />
         </div>
@@ -282,7 +282,7 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
           transition={{ duration: 0.2, delay: isOpen ? 0.4 : 0 }}
         >
           <motion.div
-            className="absolute inset-x-0 top-0 h-[60%] origin-top"
+            className="absolute inset-0 origin-top"
             style={{ transformStyle: 'preserve-3d' }}
             initial={{ rotateX: 0 }}
             animate={{ rotateX: isOpen ? -180 : 0 }}
@@ -295,7 +295,7 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
             <div
               className="absolute inset-0 rounded-t-sm"
               style={{
-                clipPath: 'polygon(0 0, 100% 0, 50% 68%)',
+                clipPath: 'polygon(0 0, 100% 0, 50% 76%)',
                 backfaceVisibility: 'hidden',
                 background: 'linear-gradient(to bottom, #2a2a2a, #1d1d1d)'
               }}
@@ -304,7 +304,7 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
             <div
               className="absolute inset-0 rounded-t-sm"
               style={{
-                clipPath: 'polygon(0 0, 100% 0, 50% 68%)',
+                clipPath: 'polygon(0 0, 100% 0, 50% 76%)',
                 backfaceVisibility: 'hidden',
                 transform: 'rotateX(180deg)',
                 background: '#1a1a1a'
@@ -323,14 +323,14 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
           {/* This covers the area where photos might peek through */}
           <div
             className="absolute inset-x-0 top-0 bg-[#1d1d1d]"
-            style={{ height: '60%' }}
+            style={{ height: '64%' }}
           />
         </motion.div>
 
         {/* === LAYER 6: WAX SEAL === */}
         <motion.div
-          className="absolute left-1/2 -translate-x-1/2 z-50 pointer-events-none"
-          style={{ top: '31%' }}
+          className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none"
+          style={{ top: '76%' }}
           initial={{ y: 0, opacity: 1, scale: 1, rotate: 0 }}
           animate={{
             y: isOpen ? -60 : 0,
@@ -352,7 +352,12 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
               }}
             />
             <div className="absolute inset-1 rounded-full border border-[#8b6914]/30" />
-            <span className="relative font-serif font-bold text-[#5a4a2a] text-sm sm:text-base md:text-lg">MP</span>
+            <img
+              src="/Recurso 6@1000x.png"
+              alt="Marce & Pipe"
+              className="relative w-[72%] opacity-80"
+              style={{ mixBlendMode: 'multiply' }}
+            />
           </div>
         </motion.div>
 

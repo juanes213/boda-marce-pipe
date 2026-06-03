@@ -291,7 +291,7 @@ export const InvitationContent = ({ guestId, guestName, guestCount }: Invitation
         </motion.div>
 
         {/* Envelope Container with decorative frame */}
-        <div className="relative w-full max-w-[min(92vw,420px)] mx-auto flex items-center justify-center mt-8 md:mt-12 min-h-[300px] sm:min-h-[340px]">
+        <div className="relative w-full max-w-[min(94vw,560px)] mx-auto flex items-center justify-center mt-8 md:mt-12 min-h-[260px] sm:min-h-[320px]">
           {/* Subtle decorative frame around envelope */}
           <motion.div
             className="absolute inset-0 -z-10"
