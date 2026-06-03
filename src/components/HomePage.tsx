@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { RSVPSection } from './RSVPSection';
+import { GuestSearch } from './GuestSearch';
 import { galleryImages } from '../data/galleryImages';
 
 // Navbar with scroll-aware background
@@ -947,7 +948,11 @@ const FooterSection = () => (
   </footer>
 );
 
-export const HomePage = () => {
+interface HomePageProps {
+  showGuestSearch?: boolean;
+}
+
+export const HomePage = ({ showGuestSearch = false }: HomePageProps) => {
   return (
     <div className="bg-[#f4f3ef]">
       <Navbar />
@@ -957,6 +962,7 @@ export const HomePage = () => {
       <DressCodeSection />
       <GallerySection />
       <RSVPSection />
+      {showGuestSearch && <GuestSearch />}
       <FooterSection />
     </div>
   );

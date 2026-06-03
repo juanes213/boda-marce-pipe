@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { HomePage } from '../components/HomePage';
+---
+
+<Layout
+  title="Invitados - Marce & Pipe"
+  description="Busca tu invitación personalizada para la boda de Marce & Pipe."
+>
+  <HomePage client:load showGuestSearch={true} />
+</Layout>
