@@ -396,18 +396,15 @@ const DressCodeSection = () => {
   const menImages = ['/referencias-h/Esto si Hombre .PNG'];
 
   const womenImages = [
-    '/referencias/1.PNG',
     '/referencias/2.PNG',
     '/referencias/3.PNG',
     '/referencias/4.PNG',
-    '/referencias/5 .PNG',
     '/referencias/6.PNG',
-    '/referencias/7.PNG',
     '/referencias/8.PNG',
-    '/referencias/9.PNG',
     '/referencias/10.PNG',
     '/referencias/11.PNG',
-    '/referencias/12 .PNG',
+    '/referencias/12.jpeg',
+    '/referencias/13.jpeg',
   ];
 
   const menAvoidImages = [

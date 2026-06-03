@@ -27,18 +27,15 @@ export const Envelope = ({ isOpen, guestName = 'Familia Invitada', guestCount = 
   const reservedGreenColors = ['#213500', '#293e06', '#32470c', '#3b5110', '#214300', '#1f4903'];
   const menImages = ['/referencias-h/Esto si Hombre .PNG'];
   const womenImages = [
-    '/referencias/1.PNG',
     '/referencias/2.PNG',
     '/referencias/3.PNG',
     '/referencias/4.PNG',
-    '/referencias/5 .PNG',
     '/referencias/6.PNG',
-    '/referencias/7.PNG',
     '/referencias/8.PNG',
-    '/referencias/9.PNG',
     '/referencias/10.PNG',
     '/referencias/11.PNG',
-    '/referencias/12 .PNG',
+    '/referencias/12.jpeg',
+    '/referencias/13.jpeg',
   ];
   const menAvoidImages = [
     '/no-referencias-h/Esto no H 1 .PNG',
