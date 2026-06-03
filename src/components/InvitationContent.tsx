@@ -1,12 +1,16 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Envelope } from './Envelope';
 import { BackgroundGradient } from './BackgroundGradient';
 
 interface InvitationContentProps {
+  guestId: string;
   guestName: string;
   guestCount: number;
 }
+
+type RsvpStatus = 'yes' | 'no' | null;
+const WHATSAPP_CONFIRMATION_URL = 'https://wa.me/message/GURDGQWGJZQPP1';
 
 // Decorative corner ornament component
 const CornerOrnament = ({ position = 'top-left' }: { position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' }) => {
@@ -97,7 +101,69 @@ const FloralElement = ({ delay = 0, side = 'left' }: { delay?: number; side?: 'l
   );
 };
 
-export const InvitationContent = ({ guestName, guestCount }: InvitationContentProps) => {
+const RsvpConfirmation = () => {
+  const [status, setStatus] = useState<RsvpStatus>(null);
+  const [notice, setNotice] = useState('');
+
+  const confirmAttendance = () => {
+    setStatus('yes');
+    window.location.href = WHATSAPP_CONFIRMATION_URL;
+  };
+
+  const declineAttendance = () => {
+    setStatus('no');
+    setNotice('Gracias por avisarnos. Tu respuesta quedó registrada en esta invitación.');
+  };
+
+  return (
+    <motion.section
+      className="mt-8 w-full max-w-md rounded-2xl border border-[#d4a574]/30 bg-white/80 p-5 text-center shadow-[0_18px_50px_rgba(29,29,29,0.08)] backdrop-blur md:mt-10 md:p-6"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 1.1 }}
+    >
+      <p className="mb-2 text-[10px] uppercase tracking-[0.3em] text-[#1d1d1d]/45">
+        Confirmación
+      </p>
+      <h2 className="mb-3 text-2xl text-[#1d1d1d]" style={{ fontFamily: "'Reina Neue Display', serif" }}>
+        ¿Nos acompañas?
+      </h2>
+      <p className="mb-5 text-sm leading-relaxed text-[#1d1d1d]/60">
+        Confirma tu asistencia directamente con los novios.
+      </p>
+
+      <div className="rounded-full border border-[#d4a574]/35 bg-[#f4f3ef]/70 p-1 shadow-inner">
+        <div className="grid grid-cols-2 gap-1">
+          <button
+            type="button"
+            onClick={confirmAttendance}
+            className={`rounded-full px-5 py-3 text-sm font-medium transition-all ${
+              status === 'yes'
+                ? 'bg-[#213500] text-white shadow-md'
+                : 'text-[#1d1d1d]/70 hover:bg-white hover:text-[#213500]'
+            }`}
+          >
+            Confirmo
+          </button>
+          <button
+            type="button"
+            onClick={declineAttendance}
+            className={`rounded-full px-5 py-3 text-sm font-medium transition-all ${
+              status === 'no'
+                ? 'bg-[#1d1d1d] text-white shadow-md'
+                : 'text-[#1d1d1d]/70 hover:bg-white hover:text-[#1d1d1d]'
+            }`}
+          >
+            No confirmo
+          </button>
+        </div>
+      </div>
+
+      {notice && <p className="mt-4 text-xs leading-relaxed text-[#1d1d1d]/55">{notice}</p>}
+    </motion.section>
+  );
+};
+export const InvitationContent = ({ guestId, guestName, guestCount }: InvitationContentProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -243,6 +309,8 @@ export const InvitationContent = ({ guestName, guestCount }: InvitationContentPr
 
           <Envelope isOpen={isOpen} guestName={guestName} guestCount={guestCount} />
         </div>
+
+        <RsvpConfirmation />
 
         {/* Logo at bottom with decorative elements */}
         <motion.div

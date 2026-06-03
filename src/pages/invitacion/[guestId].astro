@@ -18,7 +18,7 @@ if (!guest) {
   description="Has sido invitado a nuestra boda. ¡Nos casamos!"
 >
   {guest ? (
-    <InvitationContent client:load guestName={guest.name} guestCount={guest.seats} />
+    <InvitationContent client:load guestId={guest.id} guestName={guest.name} guestCount={guest.seats} />
   ) : (
     <main class="min-h-screen bg-[#f4f3ef] flex items-center justify-center px-6 text-center">
       <section class="max-w-md">

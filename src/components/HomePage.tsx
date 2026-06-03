@@ -392,13 +392,7 @@ const DressCodeSection = () => {
   const [womenAvoidCarouselIndex, setWomenAvoidCarouselIndex] = useState(0);
   const reservedGreenColors = ['#213500', '#293e06', '#32470c', '#3b5110', '#214300', '#1f4903'];
 
-  const menImages = [
-    '/7.jpg',
-    '/8.jpg',
-    '/9.jpg',
-    '/10.jpg',
-    '/11.avif',
-  ];
+  const menImages = ['/referencias-h/Esto si Hombre .PNG'];
 
   const womenImages = [
     '/referencias/1.PNG',
