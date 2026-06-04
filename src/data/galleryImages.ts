@@ -1,6 +1,7 @@
 export const galleryImages = [
-  'DSC01794.jpg',
+  'DSC02516.jpg',
   'DSC01826.jpg',
+  'DSC01794.jpg',
   'DSC01832.jpg',
   'DSC01864.jpg',
   'DSC01890.jpg',
@@ -18,7 +19,6 @@ export const galleryImages = [
   'DSC02490.jpg',
   'DSC02503.jpg',
   'DSC02512.jpg',
-  'DSC02516.jpg',
   'DSC02785.jpg',
   'DSC02830.jpg',
   'DSC02852.jpg',
