@@ -24,11 +24,18 @@ const repairMojibake = (value: string) => {
 
 const getGuestName = (guest: Guest) => repairMojibake(guest.name);
 
+const matchesExactGuest = (query: string, guest: Guest) => {
+  const name = normalizeSearch(getGuestName(guest));
+  const slug = normalizeSearch(guest.id.replace(/-/g, ' '));
+
+  return name === query || slug === query;
+};
+
 const matchesGuest = (query: string, guest: Guest) => {
   const name = normalizeSearch(getGuestName(guest));
   const slug = normalizeSearch(guest.id.replace(/-/g, ' '));
 
-  if (name === query || slug === query) return true;
+  if (matchesExactGuest(query, guest)) return true;
   if (name.includes(query) || slug.includes(query)) return true;
 
   const tokens = query.split(' ').filter(Boolean);
@@ -41,6 +48,12 @@ export const GuestSearch = () => {
 
   const suggestions = useMemo(() => {
     if (normalizedQuery.length < 4) return [];
+
+    const exactMatches = guests
+      .filter((guest) => matchesExactGuest(normalizedQuery, guest))
+      .sort((a, b) => getGuestName(a).localeCompare(getGuestName(b)));
+
+    if (exactMatches.length > 0) return exactMatches.slice(0, 5);
 
     const matches = guests
       .filter((guest) => matchesGuest(normalizedQuery, guest))
