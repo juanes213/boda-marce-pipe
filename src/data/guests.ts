@@ -829,8 +829,8 @@ export const guests = [
     "group": "LA GRAN FAMILIA"
   },
   {
-    "id": "dayana-de-arias",
-    "name": "Dayana de Arias",
+    "id": "dayana-barrera",
+    "name": "Dayana Barrera",
     "seats": 1,
     "group": "ECHENIQUE"
   },
@@ -901,8 +901,8 @@ export const guests = [
     "group": "LA GRAN FAMILIA"
   },
   {
-    "id": "diana-de-arias",
-    "name": "Diana de Arias",
+    "id": "diana-iriarte",
+    "name": "Diana Iriarte",
     "seats": 1,
     "group": "ECHENIQUE"
   },
