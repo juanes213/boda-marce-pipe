@@ -199,8 +199,8 @@ export const guests = [
     "group": "GOMEZ"
   },
   {
-    "id": "armando-salcedo",
-    "name": "Armando Salcedo",
+    "id": "estefany-salcedo-anaya",
+    "name": "Estefany Salcedo Anaya",
     "seats": 1,
     "group": "BLANQUICETT"
   },
