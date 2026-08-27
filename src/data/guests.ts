@@ -1271,6 +1271,18 @@ export const guests = [
     "name": "Carolina Roa",
     "seats": 1,
     "group": "INVITADOS"
+  },
+  {
+    "id": "fabio-román",
+    "name": "Fabio Román",
+    "seats": 1,
+    "group": "INVITADOS"
+  },
+  {
+    "id": "adriana-iriarte",
+    "name": "Adriana Iriarte",
+    "seats": 1,
+    "group": "INVITADOS"
   }
 ] as const satisfies readonly Guest[];
 
