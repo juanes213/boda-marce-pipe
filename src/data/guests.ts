@@ -775,8 +775,8 @@ export const guests = [
     "group": "AMIGOS ADULTOS"
   },
   {
-    "id": "pedro-pablo-giraldo",
-    "name": "Pedro Pablo Giraldo",
+    "id": "pedro-pablo-otoya",
+    "name": "Pedro Pablo Otoya",
     "seats": 1,
     "group": "AMIGOS DE PAPÁS"
   },
