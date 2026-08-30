@@ -1301,7 +1301,31 @@ export const guests = [
     "name": "Elvia María González Lozano",
     "seats": 1,
     "group": "INVITADOS"
-  }
+  },  
+  {
+    "id": "aristides-sotomayor",
+    "name": "Aristides Sotomayor",
+    "seats": 1,
+    "group": "INVITADOS"
+  },
+    {
+    "id": "lucy-rubio-de-sotomayor",
+    "name": "Lucy Rubio de Sotomayor",
+    "seats": 1,
+    "group": "INVITADOS"
+  },
+    {
+    "id": "nora-fuenmayor",
+    "name": "Nora Fuenmayor",
+    "seats": 1,
+    "group": "INVITADOS"
+  },
+    {
+    "id": "rafael-niebles",
+    "name": "Rafael Niebles",
+    "seats": 1,
+    "group": "INVITADOS"
+  },
 ] as const satisfies readonly Guest[];
 
 const guestsById = new Map<string, Guest>(guests.map((guest) => [guest.id, guest]));
