@@ -1326,6 +1326,12 @@ export const guests = [
     "seats": 1,
     "group": "INVITADOS"
   },
+      {
+    "id": "soraya-muvdi",
+    "name": "Soraya Muvdi",
+    "seats": 1,
+    "group": "INVITADOS"
+  }
 ] as const satisfies readonly Guest[];
 
 const guestsById = new Map<string, Guest>(guests.map((guest) => [guest.id, guest]));
