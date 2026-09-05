@@ -7,18 +7,6 @@ export interface Guest {
 
 export const guests = [
   {
-    "id": "vanessa-rincon",
-    "name": "Vanessa Rincón",
-    "seats": 1,
-    "group": "INVITADOS"
-  },
-  {
-    "id": "taylor-londono",
-    "name": "Taylor Londoño",
-    "seats": 1,
-    "group": "INVITADOS"
-  },
-  {
     "id": "danna-belen-jurado",
     "name": "Danna Belén Jurado",
     "seats": 1,
@@ -132,6 +120,19 @@ export const guests = [
     "seats": 1,
     "group": "AMIGOS EN COMÚN"
   },
+   {
+    "id": "sofia polchlopek-",
+    "name": "Sofia Polchlopek",
+    "seats": 1,
+    "group": "AMIGOS EN COMÚN"
+  },
+   {
+    "id": "daniel-quintero",
+    "name": "Daniel Quintero",
+    "seats": 1,
+    "group": "AMIGOS EN COMÚN"
+  }
+
 ] as const satisfies readonly Guest[];
 
 const guestsById = new Map<string, Guest>(guests.map((guest) => [guest.id, guest]));
