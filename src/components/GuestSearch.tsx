@@ -42,6 +42,12 @@ const matchesGuest = (query: string, guest: Guest) => {
   return tokens.length > 1 && tokens.every((token) => name.includes(token) || slug.includes(token));
 };
 
+// Las confirmaciones estan cerradas: solo estos invitados pueden encontrar su
+// invitacion desde el buscador. Vaciar este arreglo cierra el buscador por completo.
+const SEARCHABLE_GUEST_IDS: readonly string[] = ['carlos-pernett'];
+
+const searchableGuests = guests.filter((guest) => SEARCHABLE_GUEST_IDS.includes(guest.id));
+
 export const GuestSearch = () => {
   const [query, setQuery] = useState('');
   const normalizedQuery = normalizeSearch(query);
@@ -49,13 +55,13 @@ export const GuestSearch = () => {
   const suggestions = useMemo(() => {
     if (normalizedQuery.length < 4) return [];
 
-    const exactMatches = guests
+    const exactMatches = searchableGuests
       .filter((guest) => matchesExactGuest(normalizedQuery, guest))
       .sort((a, b) => getGuestName(a).localeCompare(getGuestName(b)));
 
     if (exactMatches.length > 0) return exactMatches.slice(0, 5);
 
-    const matches = guests
+    const matches = searchableGuests
       .filter((guest) => matchesGuest(normalizedQuery, guest))
       .sort((a, b) => getGuestName(a).localeCompare(getGuestName(b)));
 
@@ -84,7 +90,7 @@ export const GuestSearch = () => {
           Busca tu invitación
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#1d1d1d]/65 md:text-base">
-          Escribe tu nombre o apellidos. Por privacidad, solo mostraremos una invitación cuando encontremos una coincidencia única.
+          Ya cerramos la lista de invitados. Si los novios habilitaron tu invitación, escribe tu nombre completo para abrirla.
         </p>
 
         <div className="relative mx-auto mt-8 max-w-xl">
@@ -115,7 +121,7 @@ export const GuestSearch = () => {
 
               {showNoResults && (
                 <div className="px-5 py-5 text-center text-sm text-[#1d1d1d]/65">
-                  No encontramos una coincidencia única. Escribe un poco más de tu nombre o contacta a los novios.
+                  Las confirmaciones ya están cerradas. Si crees que es un error, contacta directamente a los novios.
                 </div>
               )}
             </div>
