@@ -44,7 +44,12 @@ const matchesGuest = (query: string, guest: Guest) => {
 
 // Las confirmaciones estan cerradas: solo estos invitados pueden encontrar su
 // invitacion desde el buscador. Vaciar este arreglo cierra el buscador por completo.
-const SEARCHABLE_GUEST_IDS: readonly string[] = ['carlos-pernett'];
+const SEARCHABLE_GUEST_IDS: readonly string[] = [
+  'carlos-pernett',
+  'cristian-carcamo',
+  'maria-paula-miranda',
+  'samuel-ruiz',
+];
 
 const searchableGuests = guests.filter((guest) => SEARCHABLE_GUEST_IDS.includes(guest.id));
 

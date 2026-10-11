@@ -121,7 +121,7 @@ export const guests = [
     "group": "AMIGOS EN COMÚN"
   },
    {
-    "id": "sofia polchlopek-",
+    "id": "sofia-polchlopek",
     "name": "Sofia Polchlopek",
     "seats": 1,
     "group": "AMIGOS EN COMÚN"
@@ -135,6 +135,24 @@ export const guests = [
   {
     "id": "carlos-pernett",
     "name": "Carlos Pernett",
+    "seats": 1,
+    "group": "INVITADOS"
+  },
+  {
+    "id": "cristian-carcamo",
+    "name": "Cristian Cárcamo",
+    "seats": 1,
+    "group": "AMIGOS EN COMÚN"
+  },
+  {
+    "id": "maria-paula-miranda",
+    "name": "Maria Paula Miranda",
+    "seats": 1,
+    "group": "INVITADOS"
+  },
+  {
+    "id": "samuel-ruiz",
+    "name": "Samuel Ruiz",
     "seats": 1,
     "group": "INVITADOS"
   }
