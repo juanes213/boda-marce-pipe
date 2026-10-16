@@ -49,6 +49,8 @@ const SEARCHABLE_GUEST_IDS: readonly string[] = [
   'cristian-carcamo',
   'maria-paula-miranda',
   'samuel-ruiz',
+  'carmenza-tinoco',
+  'alberto-del-rio',
 ];
 
 const searchableGuests = guests.filter((guest) => SEARCHABLE_GUEST_IDS.includes(guest.id));
